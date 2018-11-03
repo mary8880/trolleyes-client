@@ -5,7 +5,6 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
         $scope.totalPages = 1;
         if (!$routeParams.rpp) {
             $scope.rpp = 10;
-            arrp=rpp;
         } else {
 
             $scope.rpp = $routeParams.rpp;
