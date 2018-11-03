@@ -22,17 +22,39 @@
                         <a class="page-link" ng-show="page>1" href="usuario/plist/{{rpp}}/{{page-1}}">Previous</a>
                     </li>
                     
-                    
-                    
-                    <li class="page-item" ng-class="{'active':(p==page)}" ng-repeat="p in list">
-                        <a class="page-link" href="usuario/plist/{{rpp}}/{{p}}">{{p}}</a>
+                    <li class="page-item" >
+                        <a >...</a>
                     </li>
                     
+                    <li class="page-item">
+                        <a class="page-link" ng-class="{'active':(p=>page)}" href="usuario/plist/{{rpp}}/{{page-1}}">{{page-1}}</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(page)}">
+                        <a class="page-link" href="usuario/plist/{{rpp}}/{{page}}">{{page}}</a>
+                    </li>
+                   
+                    <li class="page-item" >
+                        <a class="page-link"  ng-disabled="page>=totalPages" href="usuario/plist/{{rpp}}/{{page--1}}">{{page--1}}</a>
+                    </li>
                     
-                    
+                    <li class="page-item" >
+                        <a >...</a>
+                    </li>
                     <li class="page-item">
                         <a class="page-link" ng-show="page!=totalPages" href="usuario/plist/{{rpp}}/{{page--1}}">Next</a>
                     </li>
+                </ul>
+                <ul class="pagination">
+                    <li class="page-item" ng-class="{'active':(rpp==10)}">
+                        <a class="page-link"  href="usuario/plist/{{10}}/{{1}}">10</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(rpp==20)}">
+                        <a class="page-link"  href="usuario/plist/{{20}}/{{1}}">20</a>
+                    </li>
+                     <li class="page-item" ng-class="{'active':(rpp==100)}">
+                        <a class="page-link"  href="usuario/plist/{{100}}/{{1}}">100</a>
+                    </li>
+                    
                 </ul>
             </nav>
 
