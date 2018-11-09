@@ -1,0 +1,38 @@
+<header ng-include="'js/app/header.html'"></header>
+<main role="main" class="container">
+
+    <div class="mx-auto" style="margin-top: 80px">
+        <table class="table table-hover table-dark">
+            <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">DNI</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Primer Apellido</th>
+                <th class="text-center">Segundo apellido</th>
+                <th class="text-center">Nombre usuario</th>
+                <th class="text-center">Tipo de usuario</th>
+                <th class="text-center">Acciones</th>
+                
+            </tr>
+            <tr>
+                <td class="text-center">{{ajaxData.id}}</td>
+                <td class="text-center">{{ajaxData.dni}}</td>
+                <td class="text-center">{{ajaxData.nombre}}</td>
+                <td class="text-center">{{ajaxData.ape1}}</td>
+                <td class="text-center">{{ajaxData.ape2}}</td>
+                <td class="text-center">{{ajaxData.login}}</td>
+                <td class="text-center">{{ajaxData.id_tipoUsuario}}</td>
+                <td><a href="/trolleyes-client/public_html/usuario/edit/{{fila.id}}" class="btn btn-light" role="button">Editar</a></td>
+                <td><a href="/trolleyes-client/public_html/usuario/delete/{{fila.id}}" class="btn btn-light" role="button">Eliminar</a></td>
+            </tr>
+        </table>
+         </div>
+    <div >
+      <h1>¿Desea eliminar este usuario?</h1>
+      <button class="btn btn-danger">si</button>
+      <button class="btn btn-info">no</button>
+    </div>
+
+</main>
+
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>   
