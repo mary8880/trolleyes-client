@@ -5,6 +5,8 @@
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Usuarios</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
+                     <a class="btn btn-light" href="/trolleyes-client/public_html/usuario/new">Nuevo</a>
+                <div class="btn-toolbar mb-2 mb-md-0">
                      <button type="button" class="btn btn-light" ng-click="resetOrder()">
                                 <i class="fa fa-eye"></i>
                             </button>
@@ -142,10 +144,10 @@
                         <td>{{fila.ape1}}</td>
                         <td>{{fila.ape2}}</td>
                         <td>{{fila.login}}</td>
-                        <td>{{fila.id_tipoUsuario}}</td>
-                        <td><a href="/trolleyes-client/public_html/usuario/view/{{fila.id}}" class="btn btn-light" role="button">Ver</a></td>
-                        <td><a href="/trolleyes-client/public_html/usuario/edit/{{fila.id}}" class="btn btn-light" role="button">Editar</a></td>
-                        <td><a href="/trolleyes-client/public_html/usuario/delete/{{fila.id}}" class="btn btn-light" role="button">Eliminar</a></td>
+                        <td><a href="/trolleyes-client/public_html/tipousuario/plist">{{fila.obj_tipoUsuario.desc}}</a></td>
+                        <td><a href="/trolleyes-client/public_html/usuario/view/{{fila.id}}" class="btn btn-light" role="button">Ver</a>
+                        <a href="/trolleyes-client/public_html/usuario/edit/{{fila.id}}" class="btn btn-light" role="button">Editar</a>
+                        <a href="/trolleyes-client/public_html/usuario/delete/{{fila.id}}" class="btn btn-light" role="button">Eliminar</a></td>
                     </tr>
                 </table>
 

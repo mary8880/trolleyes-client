@@ -21,9 +21,9 @@
                 <td class="text-center">{{ajaxData.ape1}}</td>
                 <td class="text-center">{{ajaxData.ape2}}</td>
                 <td class="text-center">{{ajaxData.login}}</td>
-                <td class="text-center">{{ajaxData.id_tipoUsuario}}</td>
-                <td><a href="/trolleyes-client/public_html/usuario/edit/{{fila.id}}" class="btn btn-light" role="button">Editar</a></td>
-                <td><a href="/trolleyes-client/public_html/usuario/delete/{{fila.id}}" class="btn btn-light" role="button">Eliminar</a></td>
+                <td class="text-center">{{ajaxData.obj_tipoUsuario.desc}}</td>
+                <td><a href="/trolleyes-client/public_html/usuario/edit/{{ajaxData.id}}" class="btn btn-light" role="button">Editar</a>
+                <a href="/trolleyes-client/public_html/usuario/delete/{{ajaxData.id}}" class="btn btn-light" role="button">Eliminar</a></td>
             </tr>
         </table>
 

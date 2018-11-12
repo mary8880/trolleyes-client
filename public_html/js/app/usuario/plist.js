@@ -4,6 +4,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
     function ($scope, $http, $location, toolService, $routeParams) {
 
         $scope.totalPages = 1;
+        $scope.ob="usuario";
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -49,7 +50,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -66,7 +67,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
@@ -79,7 +80,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
 
         $scope.update = function () {
             $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
-        }
+        };
 
 
 
