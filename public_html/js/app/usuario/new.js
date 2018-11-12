@@ -36,7 +36,7 @@ moduleUsuario.controller('usuarioNewController', ['$scope', '$http', 'toolServic
                     $scope.status = response.status;
                 });
 
-                alert('our form is amazing');
+                alert('Has realizado con exito un nuevo usuario');
             }
         };
         $scope.isActive = toolService.isActive;

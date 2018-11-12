@@ -47,7 +47,7 @@
                     <p ng-show="userForm.login.$error.minlength" class="text-danger">El nombre de usuario es corto</p>
                     <p ng-show="userForm.login.$error.maxlength" class="text-danger">El nombre de usuario es demasiado largo.</p>
                 </div>
-               
+
                 <!-- CONTRASEÑA -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid}">
                     <label>Contraseña</label>
@@ -55,7 +55,7 @@
                     <p ng-show="userForm.pass.$error.minlength" class="text-danger">La contraseña es corta</p>
                     <p ng-show="userForm.pass.$error.maxlength" class="text-danger">La contraseña es demasiado larga.</p>
                 </div>
-                 <!-- TIPOUSUARIO -->
+                <!-- TIPOUSUARIO -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid}">
                     <label>Tipo Usuario</label>
                     <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoUsuario" ng-required="true" ng-pattern="[1-2][1]">
@@ -73,14 +73,20 @@
             </form>        
         </div>
         <div class="col" style="margin-top: 65%; margin-left: 5%;" >
-           
-            <button  class="btn btn-warning" ng-click="resetForm()" >Reset</button>
-            <a href="/trolleyes-client/public_html/usuario/delete/{{id}}" class="btn btn-danger">Eliminar</a>
-            <a href="/trolleyes-client/public_html/usuario/view/{{id}}" class="btn btn-info" >Ver</a>
-            <a href="/trolleyes-client/public_html/usuario/plist" class="btn btn-light" >Lista</a>
+            <div class="row" >
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button  class="btn btn-warning" ng-click="resetForm()" >Reset</button>
+                        <a href="/trolleyes-client/public_html/usuario/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                        <a href="/trolleyes-client/public_html/usuario/view/{{id}}" class="btn btn-secondary" >Ver</a>
+                        <a href="/trolleyes-client/public_html/usuario/plist" class="btn btn-secondary" >Listado</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 </main>
 
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>
