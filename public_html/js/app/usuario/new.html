@@ -4,71 +4,67 @@
 
     <div class="row">  
 
-        <div class="col-sm-8" style="margin-top: 100px" >
+        <div class="col-sm-8"  style="margin-top: 100px" >
             <!-- FORM ============ -->
 
-            <form name="userForm" >
+            <form name="userForm"  novalidate>
                 <!-- ID-->
                 <div class="form-group">
                     <label>Id</label>
                     <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
                 </div>
                 <!-- DNI-->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.dni.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.dni.$invalid&& !userForm.dni.$pristine}">
                     <label>DNI</label>
-                    <input type="text" class="form-control"  id="dni" name="dni" ng-model="dni"  ng-pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/" required/>
+                    <input type="text" class="form-control"  id="dni" name="dni" ng-model="dni"  ng-pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/"required>
                     <p ng-show="userForm.dni.$error.pattern" class="alert alert-danger" role="alert">El dni no es valido</p>
-                    <p ng-show="userForm.dni.$invalid" class="text-danger" >El dni es necesario</p>
+                    <p ng-show="userForm.dni.$invalid&& !userForm.dni.$pristine" class="text-danger" >El dni es necesario</p>
                 </div>
                 <!-- NOMBRE -->
-                <div class="form-group" >
+                <div class="form-group" ng-class="{ 'has-error' : userForm.nombre.$invalid && !userForm.nombre.$pristine}">
                     <label>Nombre</label>
-                    <input type="text" name="nombre" class="form-control" ng-model="nombre" ng-required="true">
-                    <p ng-show="userForm.nombre.$invalid" class="text-danger">El nombre es necesario</p>
+                    <input type="text" name="nombre" class="form-control" ng-model="nombre" required>
+                    <p ng-show="userForm.nombre.$invalid&& !userForm.nombre.$pristine" class="text-danger">El nombre es necesario</p>
                 </div>
 
                 <!-- APE1 -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.ape1.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.ape1.$invalid && !userForm.ape1.$pristine}">
                     <label>Primer Apellido</label>
-                    <input type="text" name="ape1"  class="form-control" ng-model="ape1" ng-required="true">
-                    <p ng-show="userForm.ape1.$invalid" class="text-danger">Primer apellido es necesario</p>
+                    <input type="text" name="ape1"  class="form-control" ng-model="ape1" required>
+                    <p ng-show="userForm.ape1.$invalid&& !userForm.ape1.$pristine" class="text-danger">Primer apellido es necesario</p>
                 </div>
                 <!-- APE2 -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.ape2.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.ape2.$invalid && !userForm.ape2.$pristine}">
                     <label>Segundo Apellido</label>
-                    <input type="text" name="ape2"  class="form-control" ng-model="ape2" ng-required="true">
-                    <p ng-show="userForm.ape2.$invalid" class="text-danger">Segundo apellido es necesario</p>
+                    <input type="text" name="ape2"  class="form-control" ng-model="ape2" required>
+                    <p ng-show="userForm.ape2.$invalid&& !userForm.ape2.$pristine" class="text-danger">Segundo apellido es necesario</p>
                 </div>
 
                 <!-- USUARIO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.login.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.login.$invalid && !userForm.login.$pristine}">
                     <label>Nombre de usuario</label>
-                    <input type="text" name="login" class="form-control" ng-model="login" ng-minlength="3" ng-maxlength="8" ng-required="true">
+                    <input type="text" name="login" class="form-control" ng-model="login" ng-minlength="3" ng-maxlength="8" required >
                     <p ng-show="userForm.login.$error.minlength" class="text-danger">El nombre de usuario es corto</p>
                     <p ng-show="userForm.login.$error.maxlength" class="text-danger">El nombre de usuario es demasiado largo.</p>
+                    <p ng-show="userForm.login.$error.login.$invalid&& !userForm.login.$pristine" class="text-danger">El nombre de usuario es necesario.</p>
                 </div>
                
                 <!-- CONTRASEÑA -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid && !userForm.pass.$pristine}">
                     <label>Contraseña</label>
-                    <input type="text" name="pass"  class="form-control" ng-model="pass" ng-minlength="3" ng-maxlength="8" >
+                    <input type="text" name="pass"  class="form-control" ng-model="pass" ng-minlength="3" ng-maxlength="8" required >
                     <p ng-show="userForm.pass.$error.minlength" class="text-danger">La contraseña es corta</p>
                     <p ng-show="userForm.pass.$error.maxlength" class="text-danger">La contraseña es demasiado larga.</p>
+                    <p ng-show="userForm.pass.$error.$invalid&& !userForm.pass.$pristine" class="text-danger">La contraseña es necesaria.</p>
                 </div>
                  <!-- TIPOUSUARIO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoUsuario.$invalid && !userForm.id_tipoUsuario.$pristine}">
                     <label>Tipo Usuario</label>
-                    <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoUsuario" ng-required="true" ng-pattern="[1-2][1]">
-                    <p ng-show="userForm.id_tipoUsuario.$error.pattern" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
-                    <p ng-show="userForm.id_tipoUsuario.$invalid" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
+                    <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoUsuario" ng-pattern="/^[1-2]{1}$/" required >
+                    <p ng-show="userForm.id_tipoUsuario.$error.pattern" class="alert alert-danger" role="alert">Formato no válido. Elige 1:Administrador o 2:usuario</p>
+                    <p ng-show="userForm.id_tipoUsuario.$invalid && !userForm.id_tipoUsuario.$pristine" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
                 </div>
-
-                <!-- EMAIL -->
-                <!--                <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                                    <label>Email</label>
-                                    <input type="text" name="email"  placeholder={{ajaxData.nombre}} class="form-control" ng-model="user.email">
-                                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
-                                </div>-->                
+             
                 <button type="button" ng-click="createForm()" class="btn btn-primary" ng-disabled="userForm.$invalid">Enviar</button>
             </form>        
         </div>

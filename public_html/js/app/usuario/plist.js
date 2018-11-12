@@ -33,7 +33,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
 
         $scope.resetOrder = function () {
             $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page);
-        }
+        };
 
 
         $scope.ordena = function (order, align) {
@@ -45,7 +45,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
             $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
-        }
+        };
 
         //getcount
         $http({
