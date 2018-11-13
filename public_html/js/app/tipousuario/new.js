@@ -1,6 +1,6 @@
 'use strict'
 
-moduleUsuario.controller('tipousuarioNewController', ['$scope', '$http', 'toolService', '$routeParams',
+moduleTipousuario.controller('tipousuarioNewController', ['$scope', '$http', 'toolService', '$routeParams',
     function ($scope, $http, toolService, $routeParams) {
 
         $scope.ob = "tipousuario";
