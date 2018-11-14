@@ -1,12 +1,14 @@
 trolleyes.config(['$routeProvider', function ($routeProvider) {
         
         $routeProvider.when('/', {templateUrl: 'js/app/common/home.html', controller: 'homeController'});
+        $routeProvider.when('/login', {templateUrl: 'js/app/common/login.html', controller: 'loginController'});
         //-----------------------------usuario--------------------------------------------
         $routeProvider.when('/usuario/plist/:rpp?/:page?/:order?', {templateUrl:'js/app/usuario/plist.html', controller: 'usuarioPlistController'});
         $routeProvider.when('/usuario/view/:id?', {templateUrl: 'js/app/usuario/view.html', controller: 'usuarioViewController'});
         $routeProvider.when('/usuario/new', {templateUrl: 'js/app/usuario/new.html', controller: 'usuarioNewController'});
         $routeProvider.when('/usuario/edit/:id?', {templateUrl: 'js/app/usuario/edit.html', controller: 'usuarioEditController'});
         $routeProvider.when('/usuario/delete/:id?', {templateUrl: 'js/app/usuario/delete.html', controller: 'usuarioDeleteController'});
+        $routeProvider.when('/usuario/login', {templateUrl: 'js/app/common/usuario/login.html', controller: 'loginController'});
         //-----------------------------tipousuario-----------------------------------------
         $routeProvider.when('/tipousuario/plist:rpp?/:page?/:order?', {templateUrl: 'js/app/tipousuario/plist.html', controller: 'tipousuarioPlistController'});
         $routeProvider.when('/tipousuario/view/:id?', {templateUrl: 'js/app/tipousuario/view.html', controller: 'tipousuarioViewController'});

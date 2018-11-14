@@ -27,5 +27,12 @@
             </li>
 
         </ul>
+        <div ng-show="!logeado">
+            <a  href="/trolleyes-client/public_html/login" class="btn btn-warning">Login</a>
+        </div>
+        <div ng-show="logeado">
+            <span class="mr-3 text-light" >Hola! {{userlogeado}}</span>
+            <button type="button" ng-click="logout()"class="btn btn-secondary">Logout</button>
+        </div>
     </div>
 </nav>

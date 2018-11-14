@@ -1,12 +1,27 @@
 'use strict'
 
-moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
-    function ($scope, $http, $location, toolService, $routeParams) {
-        
-        $scope.ob="tipousuario";
-        
-        
+moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+
+        $scope.ob = "tipousuario";
         $scope.totalPages = 1;
+        $scope.logeado = false;
+        //----------------logueado---------------------
+        if (oSessionService.getUserName() !== "") {
+            $scope.userlogeado = oSessionService.getUserName();
+            $scope.logeado = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $scope.logeado = false;
+            });
+
+        };
+        //-------------------------------------------
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -52,7 +67,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -69,7 +84,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;

@@ -1,0 +1,38 @@
+<header ng-include="'js/app/header.html'"></header>
+<main role="main" class="container"> 
+
+    <div style="margin-left: 4%; margin-top:10% "> 
+        <div class="d-flex">
+            <div class="col-lg-11">
+                <h1 class="h2" >Login</h1>
+                <p>Introduce tu usuario y contraseña</p>
+            </div>
+        </div>
+    </div> 
+
+    <div class="row">  
+
+        <div class="col-sm-6" style="margin-top: 3%; margin-left: 6%" >
+            <!-- FORM ============ -->
+
+            <form name="userForm" >
+                <!-- User-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.login.$invalid && !userForm.login.$pristine}">
+                    <label>Usuario</label>
+                    <input type="text" name="login" class="form-control" ng-model="login">
+                    <p ng-show="userForm.login.$invalid && userForm.login.$pristine" class="text-danger">El usuario es necesario</p>
+                </div>
+
+                <!-- pass -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid && !userForm.pass.$pristine}">
+                    <label>Contraseña</label>
+                    <input type="text" name="pass" class="form-control" ng-model="pass" ng-required="true">
+                    <p ng-show="userForm.pass.$invalid && !userForm.pass.$pristine" class="text-danger">La contraseña es necesaria</p>
+                </div>
+                <button type="button" ng-click="loginForm()" class="btn btn-primary btn-lg" ng-disabled="userForm.$invalid">Login</button>
+            </form>        
+        </div>
+    </div>
+</main>
+
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>
