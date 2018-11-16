@@ -1,6 +1,6 @@
 'use strict'
 
-moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams','sessionService',
+moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
 
         $scope.totalPages = 1;
@@ -16,8 +16,11 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
             $http({
                 method: 'GET',
                 url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
+            }).then(function (response) {
                 $scope.logeado = false;
+                $scope.userlogeado = "";
+                location.url('/');
+                console.log(response);
             });
 
         };

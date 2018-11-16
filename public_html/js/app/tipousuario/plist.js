@@ -18,7 +18,11 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
                 url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
             }).then(function () {
                 $scope.logeado = false;
+                $scope.userlogeado = "";
             });
+            $location.url('/');
+//            $scope.ruta.reload();
+//            $location.reload();
 
         };
         //-------------------------------------------

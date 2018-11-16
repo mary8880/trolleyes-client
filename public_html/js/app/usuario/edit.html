@@ -5,7 +5,7 @@
         <div class="d-flex">
             <div class="col-lg-11">
                 <h1 class="h2" >Usuarios</h1>
-                <p>Nuevo usuario</p>
+                <p>Edita usuario</p>
             </div>
             <div class="col">
                 <div class="btn-group" role="group" aria-label="Second group"  >
@@ -70,10 +70,10 @@
                     <p ng-show="userForm.pass.$error.maxlength" class="text-danger">La contraseña es demasiado larga.</p>
                 </div>
                 <!-- TIPOUSUARIO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoUsuario.$invalid}">
                     <label>Tipo Usuario</label>
-                    <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoUsuario" ng-required="true" ng-pattern="[1-2][1]">
-                    <p ng-show="userForm.id_tipoUsuario.$error.pattern" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
+                    <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoUsuario" ng-required="true" >
+                    
                     <p ng-show="userForm.id_tipoUsuario.$invalid" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
                 </div>
 

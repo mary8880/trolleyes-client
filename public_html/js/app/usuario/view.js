@@ -1,8 +1,30 @@
 'use strict'
 
-moduleUsuario.controller('usuarioViewController', ['$scope', '$http', 'toolService', '$routeParams',
-    function ($scope, $http, toolService, $routeParams) {
+moduleUsuario.controller('usuarioViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, toolService, $routeParams, oSessionService) {
         $scope.id = $routeParams.id;
+        
+         $scope.logeado = false;
+        //----------------logueado---------------------
+        if (oSessionService.getUserName() !== "") {
+            $scope.userlogeado = oSessionService.getUserName();
+            $scope.logeado = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $scope.logeado = false;
+                $scope.userlogeado = "";
+            });
+            $location.url('/');
+//            $scope.ruta.reload();
+//            $location.reload();
+
+        };
+        //-------------------------------------------
         $scope.mostrar = false;
         $scope.activar = true;
         $scope.toggle = function () {
