@@ -37,7 +37,7 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
             $scope.ape1 = response.data.message.ape1;
             $scope.ape2 = response.data.message.ape2;
             $scope.login = response.data.message.login;
-            $scope.pass = "d00000";
+            $scope.pass = "*******";
             $scope.id_tipoUsuario = response.data.message.obj_tipoUsuario.id;
         }), function (response) {
             console.log(response);
@@ -59,7 +59,7 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                     ape1: $scope.ape1,
                     ape2: $scope.ape2,
                     login: $scope.login,
-                    pass: $scope.pass,
+                    pass:forge_sha256($scope.pass),
                     id_tipoUsuario: $scope.id_tipoUsuario
                 }
 

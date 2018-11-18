@@ -1,13 +1,13 @@
 <header ng-include="'js/app/header.html'"></header>
 <main role="main" class="container"> 
 
-    <div style="margin-left: 4%; margin-top:10% "> 
-        <div class="d-flex">
-            <div class="col-lg-11">
-                <h1 class="h2" >Tipo de Usuarios</h1>
-                <p>Nuevo tipo usuario</p>
+    <div class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3"> 
+        <div class="d-flex mt-5">
+            <div class="col-lg-11 mt-5">
+                <h1 class="h2 ml-3 mb-3" >Tipo de Usuarios</h1>
+                <p  class=" ml-3 mb-3">Nuevo tipo usuario</p>
             </div>
-            <div class="col">
+            <div class="col mt-5">
                 <div class="btn-group" role="group" aria-label="Second group"  >
                     <a href="/trolleyes-client/public_html/tipousuario/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
                     <a href="/trolleyes-client/public_html/tipousuario/plist" class="btn btn-secondary btn-md" >Listado</a>
@@ -18,7 +18,7 @@
 
     <div class="row">  
 
-        <div class="col-sm-6" style="margin-top: 3%; margin-left: 6%" >
+        <div class="col-sm-6 mt-5 mb-5 ml-3" >
             <!-- FORM ============ -->
 
             <form name="userForm" >
@@ -33,17 +33,18 @@
                     <label>Descripción</label>
                     <input type="text" name="desc" class="form-control" ng-model="desc" ng-required="true">
                     <p ng-show="userForm.desc.$invalid" class="text-danger">El descripción es necesaria</p>
-                </div>
-
-                <button type="button" ng-click="updateForm()" class="btn btn-primary btn-lg" ng-disabled="userForm.$invalid">Enviar</button>
+                </div>  
             </form>        
         </div>
-        <div class="col" style="margin-top: 6%; margin-left: 10%;" >
-            <div class="row" >
+        <div class="col mt-5 ">
+            <div class="row ml-5" >
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <button  class="btn btn-warning" ng-click="resetForm()" >Reset</button>
-                        <a href="/trolleyes-client/public_html/tipousuario/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+                        <button  class="btn btn-secondary " ng-click="resetForm()" >Reset</button>
+                        <a href="/trolleyes-client/public_html/tipousuario/delete/{{id}}" class="btn btn-secondary">Eliminar</a>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group"> 
+                       <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
                     </div>
 
                 </div>

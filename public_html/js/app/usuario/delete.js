@@ -1,8 +1,13 @@
 'use strict'
 
-moduleUsuario.controller('usuarioDeleteController', ['$scope', '$http', 'toolService', '$routeParams','sessionService',
-    function ($scope, $http, toolService, $routeParams,oSessionService) {
+moduleUsuario.controller('usuarioDeleteController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, toolService, $routeParams, oSessionService) {
         $scope.id = $routeParams.id;
+        //------------show delete-----------
+         if ($scope.id){
+            $scope.borrado=false;  
+        }
+        //-----------------------------
         $scope.ob = "usuario";
         $scope.mostrar = false;
         $scope.activar = true;
@@ -52,12 +57,15 @@ moduleUsuario.controller('usuarioDeleteController', ['$scope', '$http', 'toolSer
             }).then(function (response) {
                 $scope.status = response.status;
                 $scope.ajaxData = response.data.message;
+                $scope.borrado = true;
+                location.url('/delete');
             }, function (response) {
                 $scope.ajaxData = response.data.message || 'Request failed';
                 $scope.status = response.status;
+                $scope.borrado=false;
+                location.url('/delete');
             });
-            $scope.isActive = toolService.isActive;
-            alert('Has borrado con exito este usuario');
+            $scope.isActive = toolService.isActive;  
         };
 
 

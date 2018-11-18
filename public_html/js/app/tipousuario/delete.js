@@ -2,6 +2,7 @@
 moduleTipousuario.controller('tipousuarioDeleteController', ['$scope', '$http','$location', 'toolService', '$routeParams','sessionService',
     function ($scope, $http, $location, toolService, $routeParams, oSessionService ) {
     $scope.logeado = false;
+    
         //----------------logueado---------------------
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
@@ -23,6 +24,11 @@ moduleTipousuario.controller('tipousuarioDeleteController', ['$scope', '$http','
         };
         //-------------------------------------------
         $scope.id = $routeParams.id;
+        //------------show delete-----------
+        if ($scope.id){
+            $scope.borrado=false;  
+        }
+        //-----------------------------
         $scope.ob="tipousuario";
         $scope.mostrar = false;
         $scope.activar = true;
@@ -56,12 +62,16 @@ moduleTipousuario.controller('tipousuarioDeleteController', ['$scope', '$http','
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxData = response.data.message;
+            $scope.borrado=true;
+            location.url('/delete');
         }, function (response) {
             $scope.ajaxData = response.data.message || 'Request failed';
             $scope.status = response.status;
+            $scope.borrado=false;
+            location.url('/delete');
         }); 
           $scope.isActive = toolService.isActive;  
-          alert('Has borrado con exito este usuario');
+          
         };
         
 
