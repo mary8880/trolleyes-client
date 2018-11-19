@@ -4,6 +4,9 @@ moduleUsuario.controller('usuarioNewController', ['$scope', '$http', 'toolServic
     function ($scope, $http, toolService, $routeParams, oSessionService) {
 
         $scope.ob = "usuario";
+        //------------show create-----------
+        $scope.creado=false;  
+     
 
         $scope.isActive = toolService.isActive;
         $scope.logeado = false;
@@ -51,12 +54,15 @@ moduleUsuario.controller('usuarioNewController', ['$scope', '$http', 'toolServic
                 }).then(function (response) {
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
+                    $scope.creado=true;
+                    location.url('/tipousuario/new');
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;
+                    $scope.creado=false;
                 });
 
-                alert('Has realizado con exito un nuevo usuario');
+                
             }
         };
         $scope.isActive = toolService.isActive;

@@ -1,121 +1,92 @@
 <header ng-include="'js/app/header.html'"></header>
-<main role="main" class="container">
+<main role="main" class="container"> 
 
-
-    <div class="row">  
-
-        <div class="col-sm-6">
-            <!-- FORM ============ -->
-
-            <form name="userForm" ng-submit="submitForm()" novalidate>
-
-                <!-- NAME -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
-                    <label>Name</label>
-                    <input type="text" name="name" class="form-control" ng-model="user.name" required>
-                    <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
-                </div>
-
-                <!-- USERNAME -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                    <label>Username</label>
-                    <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
-                    <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
-                    <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
-                </div>
-
-                <!-- EMAIL -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                    <label>Email</label>
-                    <input type="email" name="email" class="form-control" ng-model="user.email">
-                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
-                </div>
-
-                <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
-
-            </form>
-        </div>
-        <div class="col-sm-6">
-            <!-- VALIDATION TABLES ======== -->    
-            <div class="row">
-                <div class="col-xs-3">
-                    <h3>Form</h3>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td ng-class="{ success: userForm.$valid, danger: userForm.$invalid }">Valid</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.$pristine, danger: !userForm.$pristine }">Pristine</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.$dirty }">Dirty</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-xs-3">
-                    <h3>Name</h3>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td ng-class="{ success: userForm.name.$valid, danger: userForm.name.$invalid }">Valid</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.name.$pristine, danger: !userForm.name.$pristine }">Pristine</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.name.$dirty }">Dirty</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.name.$touched }">Touched</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-xs-3">
-                    <h3>Username</h3>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td ng-class="{ success: userForm.username.$valid, danger: userForm.username.$invalid }">Valid</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.username.$pristine, danger: !userForm.username.$pristine }">Pristine</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.username.$dirty }">Dirty</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.username.$touched }">Touched</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-xs-3">
-                    <h3>Email</h3>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td ng-class="{ success: userForm.email.$valid, danger: userForm.email.$invalid }">Valid</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.email.$pristine, danger: !userForm.email.$pristine }">Pristine</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.email.$dirty }">Dirty</td>
-                            </tr>
-                            <tr>
-                                <td ng-class="{ success: userForm.email.$touched }">Touched</td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3"> 
+        <div class="d-flex mt-5">
+            <div class="col-lg-11 mt-5">
+                <h1 class="h2" >Productos</h1>
+                <p>Edita producto</p>
+            </div>
+            <div class="col mt-5 mt-5">
+                <div class="btn-group" role="group" aria-label="Second group"  >
+                    <a href="/trolleyes-client/public_html/producto/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
+                    <a href="/trolleyes-client/public_html/producto/plist" class="btn btn-secondary btn-md" >Listado</a>
                 </div>
             </div>
-
         </div>
-    </div>
+    </div> 
+    <div class="row">  
 
-</main>   
+        <div class="col-sm-6 mt-5 mb-5 ml-3" >
+            <!-- FORM ============ -->
+
+            <form name="userForm" ng-show="!edited">
+                <!-- ID-->
+                <div class="form-group" >
+                    <label>Id</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+                <!-- CÓDIGO-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.codigo.$invalid}">
+                    <label>Código</label>
+                    <input type="text" class="form-control"  id="codigo" name="codigo" ng-model="codigo" ng-required="true">
+                    <p ng-show="userForm.codigo.$invalid" class="text-danger" >El Código es necesario</p>
+                </div>
+                <!-- DESCRIPCIÓN -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.desc.$invalid}">
+                    <label>Descripción</label>
+                    <input type="text" name="desc" class="form-control" ng-model="desc" ng-required="true">
+                    <p ng-show="userForm.desc.$invalid" class="text-danger">El nombre es necesario</p>
+                </div>
+
+                <!--EXIXTENCIAS -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.existencias.$invalid}">
+                    <label>Existencias</label>
+                    <input type="text" name="existencias"  class="form-control" ng-model="existencias" ng-required="true">
+                    <p ng-show="userForm.existencias.$invalid" class="text-danger">Primer apellido es necesario</p>
+                </div>
+                <!--PRECIO-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.precio.$invalid}">
+                    <label>Precio</label>
+                    <input type="text" name="precio"  class="form-control" ng-model="precio" ng-required="true">
+                    <p ng-show="userForm.precio.$invalid" class="text-danger">Segundo apellido es necesario</p>
+                </div>
+                <!--IMAGEN-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.foto.$invalid}">
+                    <label>Imagen del producto</label>
+                    <input type="file" name="foto"  class="form-control" ng-model="foto">
+                    <p ng-show="userForm.foto.$invalid" class="text-danger">La imagen no es válida</p>
+                </div>
+
+                <!-- TIPOPRODUCTO -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoProducto.$invalid}">
+                    <label>Tipo Producto</label>
+                    <input type="text" name="id_tipoProducto"  class="form-control" ng-model="id_tipoProducto" ng-required="true" >
+
+                    <p ng-show="userForm.id_tipoProducto.$invalid" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
+                </div>
+            </form>        
+        </div>
+        <div class="col  mt-5"  ng-show="!edited">
+            <div class="row row ml-5" >
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>
+                        <a href="/trolleyes-client/public_html/usuario/delete/{{id}}" class="btn btn-secondary">Eliminar</a>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group"> 
+                        <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-3" ng-show="edited">
+            <h1>Ha editado el producto {{desc}}  </h1>
+            <div class="d-flex align-self-center align-items-center ml-3">
+                <a class="btn btn-warning" href="/trolleyes-client/public_html/tipousuario/plist"> Volver al Listado</a>
+            </div>
+        </div> 
+    </div>
+</main>
 
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

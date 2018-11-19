@@ -4,7 +4,8 @@ moduleTipousuario.controller('tipousuarioNewController', ['$scope', '$http', '$l
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
 
         $scope.ob = "tipousuario";
-
+        //------------show create-----------
+        $scope.creado=false;  
         $scope.isActive = toolService.isActive;
         $scope.logeado = false;
         //----------------logueado---------------------
@@ -44,12 +45,15 @@ moduleTipousuario.controller('tipousuarioNewController', ['$scope', '$http', '$l
                 }).then(function (response) {
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
+                    $scope.creado=true;
+                    location.url('/new');
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;
+                    $scope.creado=false;
                 });
 
-                alert('Has realizado con exito un nuevo  tipo de usuario');
+                
             }
         };
         $scope.isActive = toolService.isActive;

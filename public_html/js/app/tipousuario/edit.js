@@ -6,6 +6,8 @@ moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$
         $scope.ruta = $location.path();
         $scope.ob = "tipousuario";
         $scope.logeado = false;
+        //------------show edited-----------
+        $scope.edited = false;
         //----------------logueado---------------------
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
@@ -49,16 +51,17 @@ moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$
                     method: 'GET',
                     header: {'Content-Type': 'application/json;charset=utf-8'},
                     url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=update',
-                   params: {json: JSON.stringify(json)}
+                    params: {json: JSON.stringify(json)}
                 }).then(function (response) {
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
+                    $scope.edited = true;
+                location.url('/tipousuario/edit');
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;
+                    $scope.edited = false;
                 });
-
-                alert('Tipo de Ususario creado con éxito');
             }
         };
         $scope.isActive = toolService.isActive;

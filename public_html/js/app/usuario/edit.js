@@ -1,10 +1,13 @@
 'use strict'
 
-moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolService', '$routeParams','sessionService','$location',
+moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$location',
     function ($scope, $http, toolService, $routeParams, oSessionService, $location) {
         $scope.id = $routeParams.id;
         $scope.ob = "usuario";
         $scope.logeado = false;
+        //------------show edited-----------
+        $scope.edited = false;
+
         //----------------logueado---------------------
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
@@ -59,7 +62,7 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                     ape1: $scope.ape1,
                     ape2: $scope.ape2,
                     login: $scope.login,
-                    pass:forge_sha256($scope.pass),
+                    pass: forge_sha256($scope.pass),
                     id_tipoUsuario: $scope.id_tipoUsuario
                 }
 
@@ -70,11 +73,12 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                     params: {json: JSON.stringify(json)}
                 }).then(function (data, response) {
                     console.log(data, response);
+                    $scope.edited = true;
+                    location.url('/usuario/edit');
                 }, function (response) {
                     console.log(response);
                 });
 
-                alert('our form is amazing');
             }
         };
         $scope.isActive = toolService.isActive;
@@ -94,8 +98,10 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                 $scope.login = response.data.message.login;
                 $scope.pass = response.data.message.pass;
                 $scope.id_tipoUsuario = response.data.message.obj_tipoUsuario.id;
+
             }), function (response) {
                 console.log(response);
+                
             };
 
         };

@@ -21,7 +21,7 @@
         <div class="col-sm-6 mt-5 mb-5 ml-3" >
             <!-- FORM ============ -->
 
-            <form name="userForm" >
+            <form name="userForm" ng-show="!edited">
                 <!-- ID-->
                 <div class="form-group">
                     <label>Id</label>
@@ -30,7 +30,7 @@
                 <!-- DNI-->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.dni.$invalid}">
                     <label>DNI</label>
-                    <input type="text" class="form-control"  id="dni" name="dni" ng-model="dni"  ng-pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/" required/>
+                    <input type="text" class="form-control"  id="dni" name="dni" ng-model="dni"  ng-pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/" ng-required="true">
                     <p ng-show="userForm.dni.$error.pattern" class="alert alert-danger" role="alert">El dni no es valido</p>
                     <p ng-show="userForm.dni.$invalid" class="text-danger" >El dni es necesario</p>
                 </div>
@@ -86,7 +86,7 @@
                 
             </form>        
         </div>
-        <div class="col  mt-5">
+        <div class="col  mt-5" ng-show="!edited">
             <div class="row row ml-5" >
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
@@ -101,6 +101,12 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-3" ng-show="edited">
+            <h1>Ha editado al usuario {{nombre}} {{ape1}} </h1>
+            <div class="d-flex align-self-center align-items-center ml-3">
+                <a class="btn btn-warning" href="/trolleyes-client/public_html/usuario/plist"> Volver al Listado</a>
+            </div>
+        </div> 
     </div>
 </main>
 
