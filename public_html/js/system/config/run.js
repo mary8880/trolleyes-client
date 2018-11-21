@@ -10,7 +10,7 @@ trolleyes.run(['$rootScope', 'sessionService', '$location', '$http',
                 method: 'GET',
                 url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=check'
             }).then(function (response) {
-                if (response.data.status == 200) {
+                if (response.data.status === 200) {
                     oSessionService.setSessionActive;
                     oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                 } else {

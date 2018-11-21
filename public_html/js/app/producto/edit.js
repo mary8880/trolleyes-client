@@ -73,9 +73,11 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', 'toolSer
                     console.log(data, response);
                     $scope.edited = true;
                     location.url('/producto/edit');
+                    $scope.desc = response.data.message.desc;
                 }, function (response) {
                     console.log(response);
-                    $scope.edited = false;
+                    $scope.edited = true;
+                    location.url('/producto/edit');
                 });
 
             }

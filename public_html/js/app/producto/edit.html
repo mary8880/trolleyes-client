@@ -36,20 +36,20 @@
                 <div class="form-group" ng-class="{ 'has-error' : userForm.desc.$invalid}">
                     <label>Descripción</label>
                     <input type="text" name="desc" class="form-control" ng-model="desc" ng-required="true">
-                    <p ng-show="userForm.desc.$invalid" class="text-danger">El nombre es necesario</p>
+                    <p ng-show="userForm.desc.$invalid" class="text-danger">La descripción es necesaria</p>
                 </div>
 
                 <!--EXIXTENCIAS -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.existencias.$invalid}">
                     <label>Existencias</label>
                     <input type="text" name="existencias"  class="form-control" ng-model="existencias" ng-required="true">
-                    <p ng-show="userForm.existencias.$invalid" class="text-danger">Primer apellido es necesario</p>
+                    <p ng-show="userForm.existencias.$invalid" class="text-danger">Las existencias son necesarias</p>
                 </div>
                 <!--PRECIO-->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.precio.$invalid}">
                     <label>Precio</label>
                     <input type="text" name="precio"  class="form-control" ng-model="precio" ng-required="true">
-                    <p ng-show="userForm.precio.$invalid" class="text-danger">Segundo apellido es necesario</p>
+                    <p ng-show="userForm.precio.$invalid" class="text-danger">El precio es necesario</p>
                 </div>
                 <!--IMAGEN-->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.foto.$invalid}">
@@ -63,7 +63,7 @@
                     <label>Tipo Producto</label>
                     <input type="text" name="id_tipoProducto"  class="form-control" ng-model="id_tipoProducto" ng-required="true" >
 
-                    <p ng-show="userForm.id_tipoProducto.$invalid" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
+                    <p ng-show="userForm.id_tipoProducto.$invalid" class="text-danger">Tipo producto es necesario. </p>
                 </div>
             </form>        
         </div>
@@ -72,7 +72,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>
-                        <a href="/trolleyes-client/public_html/usuario/delete/{{id}}" class="btn btn-secondary">Eliminar</a>
+                        <a href="/trolleyes-client/public_html/producto/delete/{{id}}" class="btn btn-secondary">Eliminar</a>
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label="Second group"> 
                         <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
@@ -83,7 +83,7 @@
         <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-3" ng-show="edited">
             <h1>Ha editado el producto {{desc}}  </h1>
             <div class="d-flex align-self-center align-items-center ml-3">
-                <a class="btn btn-warning" href="/trolleyes-client/public_html/tipousuario/plist"> Volver al Listado</a>
+                <a class="btn btn-warning" href="/trolleyes-client/public_html/producto/plist"> Volver al Listado</a>
             </div>
         </div> 
     </div>

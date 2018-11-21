@@ -22,7 +22,9 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------------------------producto---------------------------------------------
         $routeProvider.when('/producto/plist', {templateUrl: 'js/app/producto/plist.html', controller: 'productoPlistController'});
         $routeProvider.when('/producto/view/:id?', {templateUrl: 'js/app/producto/view.html', controller: 'productoViewController'});
+        $routeProvider.when('/producto/new/:id?', {templateUrl: 'js/app/producto/new.html', controller: 'productoNewController'});
         $routeProvider.when('/producto/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController'});
+        $routeProvider.when('/producto/delete/:id?', {templateUrl: 'js/app/producto/delete.html', controller: 'productoDeleteController'});
         //----------------------------------------------------------------------------------
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

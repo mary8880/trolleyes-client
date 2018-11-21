@@ -1,36 +1,168 @@
 <header ng-include="'js/app/header.html'"></header>
-<main role="main" class="container">
+<div class="container-fluid">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3">
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
+                <h1 class="h2  ml-3 mb-3" >Productos</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <a class="btn btn-warning ml-3 " href="/trolleyes-client/public_html/producto/new">Nuevo</a>
+                    </div>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <button type="button" class="btn btn-light ml-3 mr-5" ng-click="resetOrder()">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <div class="btn-group ml-3 md-4" style="width:200px;">
+                            <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                            <select class="form-control " style="width:50px;"
+                                    ng-change="update()" 
+                                    ng-model="rpp">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ml-3 mt-2 mr-2">
+                    <div class="col-6">
+                        <nav aria-label="paginacion">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page > 2" href="producto/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page > 1" href="producto/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                                </li>
+                                <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                    <a class="page-link" href="producto/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page != totalPages" href="producto/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="producto/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
 
-        <div class="mt-5 pl-5 pr-5 pb-5 pt-4 ml-5 mr-5 text-center">
+                <div class="mt-5 pl-5 pr-5 pb-5 pt-4 ml-5 mr-5 text-center">
 
-            <button class="btn btn-info ml-0" ng-click="productos()">Mostrar Productos</button>
-            <button class="btn btn-alert" ng-click="productosLimpiar()">Limpiar Productos</button>
-<!--            <button class="btn btn-dark" ng-click="crearProductos()">Crear Productos</button>  -->
+                    <button class="btn btn-secondary ml-0" ng-click="productos()">Mostrar Productos</button>
+                    <button class="btn btn-secondary" ng-click="productosLimpiar()">Limpiar Productos</button>
+                    <!--            <button class="btn btn-dark" ng-click="crearProductos()">Crear nuevo productos</button>  -->
 
-        </div>
+                </div>
 
-    <div class="row form-group text-center">
-        <table class="table table-hover table-dark mx-auto mt-3" style=" width: 70%;">
-            <tr>
-                <th>Id</th>
-                <th>Codigo</th>
-                <th>Descripción</th>
-                <th>Existencias</th>
-                <th>Precio</th>
-                <th>Tipo Producto</th>
-                <th>Ver</th>
-            </tr>
-            <tr ng-repeat="fila in ajaxDataProductos">
-                <td>{{fila.id}}</td>
-                <td>{{fila.codigo}}</td>
-                <td>{{fila.desc}}</td>
-                <td style="text-align: center">{{fila.existencias}}</td>
-                <td>{{fila.precio}}</td>
-                <td style="text-align: center">{{fila.id_tipoProducto}}</td>
-                <td><a href="/trolleyes-client/public_html/producto/view/{{fila.id}}" class="btn btn-light" role="button">Ver</a></td>
-            </tr>
-        </table>
-    </div>
+                <div class="table-responsive mt-5 mb-5 ">
+                    <table class="table table-striped table-sm mt-5 align-self-center" >
+                        <tr>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Id</div>
+                                    <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div></div>
+                            </th>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Codigo</div>
+                                    <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('codigo', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('codigo', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Descripción</div>
+                                    <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('producto.desc', 'asc')">
+                                            <a class="fas fa-long-arrow-alt-up" ></a>
 
-</main>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('producto.desc', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Existencias</div>
+                                    <div class=" mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Second group">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('existencias', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('existencias', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Precio</div>
+                                    <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('precio', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('precio', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Tipo Producto</div>
+                                    <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_tipoProducto', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_tipoProducto', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="text-center">
+                                <div class="d-flex align-self-center align-items-center">
+                                    <div class=" p-2 align-self-center">Operaciones</div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="fila in ajaxDataProductos">
+                            <td class="text-center">{{fila.id}}</td>
+                            <td class="text-center">{{fila.codigo}}</td>
+                            <td class="text-center">{{fila.desc}}</td>
+                            <td class="text-center">{{fila.existencias}}</td>
+                            <td class="text-center">{{fila.precio}} €</td>
+                            <td class="text-center">{{fila.id_tipoProducto}}</td>
+                            <td class="text-center">
+                                <div class="btn-group mr-2" role="group" aria-label="Basic example">
+                                    <a href="/trolleyes-client/public_html/producto/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>
+                                    <a href="/trolleyes-client/public_html/producto/edit/{{fila.id}}" class="btn btn-secondary" role="button">Editar</a>
+                                    <a href="/trolleyes-client/public_html/producto/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>   
+</div>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

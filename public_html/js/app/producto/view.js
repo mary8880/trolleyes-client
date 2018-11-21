@@ -1,11 +1,32 @@
 'use strict'
 
-moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolService', '$routeParams',
-    function ($scope, $http, toolService, $routeParams) {
+moduleProducto.controller('productoViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
         $scope.id = $routeParams.id;
         $scope.mostrar = false;
         $scope.activar = true;
         $scope.ajaxData = "";
+        $scope.logeado = false;
+        //----------------logueado---------------------
+        if (oSessionService.getUserName() !== "") {
+            $scope.userlogeado = oSessionService.getUserName();
+            $scope.logeado = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $scope.logeado = false;
+                $scope.userlogeado = "";
+            });
+            $location.url('/');
+//            $scope.ruta.reload();
+//            $location.reload();
+
+        };
+        //-------------------------------------------
         $scope.toggle = function () {
             $scope.mostrar = !$scope.mostrar;
         }
