@@ -3,10 +3,10 @@
     <div class="row">
         <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3" >
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
-                <h1 class="h2 ml-3 mb-3">Productos</h1>
+                <h1 class="h2 ml-3 mb-3">Factura</h1>
                 <div class="btn-toolbar mb-2 mb-md-0" >
-                    <a class="btn btn-warning  ml-3 " href="/trolleyes-client/public_html/producto/new">Nuevo</a>
-                    <a href="/trolleyes-client/public_html/producto/plist" class="btn btn-secondary" role="button"> Listado </a>
+                    <a class="btn btn-warning  ml-3 " href="/trolleyes-client/public_html/factura/new">Nuevo</a>
+                    <a href="/trolleyes-client/public_html/factura/plist" class="btn btn-secondary" role="button"> Listado </a>
                 </div>
                 <div class="table-responsive mt-5 mb-5 "ng-show="!borrado">
                     <table class="table table-striped table-sm">
@@ -18,43 +18,35 @@
                             </th>
                             <th>
                                 <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Codigo</div>
+                                    <div class=" p-2 align-self-center">Fecha</div>
                                 </div>
                             </th>
                             <th>
                                 <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Descripción</div>
+                                    <div class=" p-2 align-self-center">IVA</div>
                                 </div>
                             </th>
                             <th>
                                 <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Existencias</div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Precio</div>
+                                    <div class=" p-2 align-self-center">Id del usuario</div>
                                 </div>
                             </th>
-                       
                             <th>
                                 <div class="d-flex align-self-center align-items-center">
-                                    <div class=" p-2 align-self-center">Tipo de usuario</div>
+                                    <div class=" p-2 align-self-center">Operaciones</div>
                                 </div>
                             </th>
                         </tr>
 
                         <tr>
                             <td class="text-center">{{ajaxData.id}}</td>
-                            <td class="text-center">{{ajaxData.codigo}}</td>
-                            <td class="text-center">{{ajaxData.desc}}</td>
-                            <td class="text-center">{{ajaxData.existencias}}</td>
-                            <td class="text-center">{{ajaxData.precio}}</td>
-                            <td class="text-center">{{ajaxData.id_tipoProducto}}</td>
-                            <td class="text-center">
+                            <td class="text-center">{{ajaxData.fecha}}</td>
+                            <td class="text-center">{{ajaxData.iva}}</td>
+                            <td class="text-center">{{ajaxData.id_usuario}}</td>
                             <td>
                                 <div class="btn-group mr-2" role="group" aria-label="Basic example">
-                                    <a href="/trolleyes-client/public_html/producto/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
-                                    <a href="/trolleyes-client/public_html/producto/view/{{ajaxData.id}}" class="btn btn-secondary" role="button">Ver</a>
+                                    <a href="/trolleyes-client/public_html/factura/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
+                                    <a href="/trolleyes-client/public_html/factura/view/{{ajaxData.id}}" class="btn btn-secondary" role="button">Ver</a>
                                 </div>
                             </td>
 
@@ -62,16 +54,16 @@
                     </table>
                 </div>
                 <div class="d-flex mt-3 mb-3" ng-show="!borrado">
-                    <h1>¿Desea eliminar este producto?</h1>
+                    <h1>¿Desea eliminar esta factura?</h1>
                     <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
                         <button class="btn btn-warning btn-lg" ng-click="delete()">si</button>
-                        <a class="btn btn-secondary btn-lg" href="/trolleyes-client/public_html/producto/view/{{id}}">no</a>
+                        <a class="btn btn-secondary btn-lg" href="/trolleyes-client/public_html/factura/view/{{id}}">no</a>
                     </div>
                 </div>
                 <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-2" ng-show="borrado">
-                    <h1>Ha elimidado el producto {{desc}}</h1>
+                    <h1>Ha elimidado la factura</h1>
                     <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <a class="btn btn-warning" href="/trolleyes-client/public_html/producto/plist"> Volver al Listado</a>
+                        <a class="btn btn-warning" href="/trolleyes-client/public_html/factura/plist"> Volver al Listado</a>
                     </div>
                 </div>                               
             </div>

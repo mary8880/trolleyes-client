@@ -1,0 +1,70 @@
+<header ng-include="'js/app/header.html'"></header>
+<main role="main" class="container">
+    <div class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3"> 
+        <div class="d-flex mt-5">
+            <div class="col-lg-11 mt-5">
+                <h1 class="h2" >Factura</h1>
+                <p>Crea nueva factura</p>
+            </div>
+            <div class="col mt-5 mt-5">
+                <div class="btn-group" role="group" aria-label="Second group"  >
+                    <a href="/trolleyes-client/public_html/factura/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
+                    <a href="/trolleyes-client/public_html/factura/plist" class="btn btn-secondary btn-md" >Listado</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="row">  
+
+        <div class="col-sm-6 mt-5 mb-5 ml-3" >
+            <!-- FORM ============ -->
+
+            <form name="userForm"  novalidate ng-show="!creado">
+                <!-- ID-->
+                <div class="form-group">
+                    <label>Id</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+                <!-- FECHA -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.fecha.$invalid && !userForm.fecha.$pristine}">
+                    <label>Fecha   Año-mes-dia<0000-00-00>  hora<00:00:00></label>
+                    <input type="text" name="fecha"  class="form-control" ng-model="fecha" required>
+                    <p ng-show="userForm.fecha.$invalid && !userForm.fecha.$pristine" class="text-danger">Segundo apellido es necesario</p>
+                </div>
+                <!-- IVA -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.iva.$invalid && !userForm.iva.$pristine}">
+                    <label>IVA</label>
+                    <input type="text" name="iva"  class="form-control" ng-model="iva"  ng-pattern="/^[1-9]{2}$/" required ><p>%</p>
+                    <p ng-show="userForm.iva.$error.pattern" class="alert alert-danger" role="alert">Iva no válido</p>
+                    <p ng-show="userForm.iva.$error.$invalid && !userForm.iva.$pristine" class="text-danger">El iva es necesario</p>
+                </div>
+                <!-- ID USUARIO -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.id_usuario.$invalid && !userForm.id_usuario.$pristine}">
+                    <label>Id del Usuario</label>
+                    <input type="text" name="id_usuario"  class="form-control" ng-model="id_usuario" required >
+                    <p ng-show="userForm.id_usuario.$invalid && !userForm.id_usuario.$pristine" class="text-danger">Id del usuario es necesario.</p>
+                </div>
+            </form>        
+        </div>
+        <div class="col mt-5"  ng-show="!creado">
+            <div class="btn-toolbar ml-5" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="Basic example">
+                    <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>
+
+                </div>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <button type="button" ng-click="createForm()" class="btn btn-warning" ng-disabled="userForm.$invalid">Enviar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-3" ng-show="creado">
+            <h1>Ha creado la factura del usuario {{id_usuario}} </h1>
+            <div class="d-flex align-self-center align-items-center ml-3">
+                <a class="btn btn-warning" href="/trolleyes-client/public_html/factura/plist"> Volver al Listado</a>
+            </div>
+        </div> 
+    </div>
+
+</main>
+
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

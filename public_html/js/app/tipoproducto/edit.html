@@ -1,0 +1,61 @@
+<header ng-include="'js/app/header.html'"></header>
+<main role="main" class="container"> 
+
+    <div class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3"> 
+        <div class="d-flex mt-5">
+            <div class="col-lg-11 mt-5">
+                <h1 class="h2 ml-3 mb-3" >Tipo de Producto</h1>
+                <p  class=" ml-3 mb-3">Nuevo tipo producto</p>
+            </div>
+            <div class="col mt-5">
+                <div class="btn-group" role="group" aria-label="Second group"  >
+                    <a href="/trolleyes-client/public_html/tipoproducto/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
+                    <a href="/trolleyes-client/public_html/tipoproducto/plist" class="btn btn-secondary btn-md" >Listado</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="row">  
+
+        <div class="col-sm-6 mt-5 mb-5 ml-3" >
+            <!-- FORM ============ -->
+
+            <form name="userForm" ng-show="!edited" >
+                <!-- ID-->
+                <div class="form-group">
+                    <label>Id</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+
+                <!-- NOMBRE -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.desc.$invalid}">
+                    <label>Descripción</label>
+                    <input type="text" name="desc" class="form-control" ng-model="desc" ng-required="true">
+                    <p ng-show="userForm.desc.$invalid" class="text-danger">El descripción es necesaria</p>
+                </div>  
+            </form>        
+        </div>
+        <div class="col mt-5 " ng-show="!edited" >
+            <div class="row ml-5" >
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button  class="btn btn-secondary " ng-click="resetForm()" >Reset</button>
+                        <a href="/trolleyes-client/public_html/tipoproducto/delete/{{id}}" class="btn btn-secondary">Eliminar</a>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group"> 
+                        <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-3" ng-show="edited">
+            <h1>Ha editado al tipousuario {{desc}}  </h1>
+            <div class="d-flex align-self-center align-items-center ml-3">
+                <a class="btn btn-warning" href="/trolleyes-client/public_html/tipoproducto/plist"> Volver al Listado</a>
+            </div>
+        </div> 
+    </div>
+</main>
+
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>
