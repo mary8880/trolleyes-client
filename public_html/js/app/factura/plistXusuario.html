@@ -110,11 +110,11 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-repeat>
-                            <th class="text-center">{{ajaxDataUsuarios.id}}</th>
-                            <td class="text-center">{{ajaxDataUsuarios.fecha}}</td>
-                            <td class="text-center">{{ajaxDataUsuarios.iva}}</td>
-                            <td class="text-center">{{ajaxDataUsuarios.id_usuario}}</td>
+                        <tr ng-repeat="fila in ajaxDataProductos">
+                            <th class="text-center">{{fila.id}}</th>
+                            <td class="text-center">{{fila.fecha}}</td>
+                            <td class="text-center">{{fila.iva}}</td>
+                            <td class="text-center">{{fila.id_usuario}}</td>
                             <td>
                                 <div class="btn-group mr-2" role="group" aria-label="Basic example">
                                     <a href="/trolleyes-client/public_html/factura/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>
