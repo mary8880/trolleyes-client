@@ -20,12 +20,13 @@ moduleCommon.controller('loginController', ['$scope', '$http', 'toolService', '$
         }
 
         $scope.loginForm = function () {
+        var  pass =forge_sha256($scope.pass)
 
 
             $http({
                 method: 'GET',
                 // header: {'Content-Type': 'application/json;charset=utf-8'},
-                url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=login&user=' + $scope.login + '&pass=' + $scope.pass
+                url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=login&user=' + $scope.login + '&pass=' +pass
                         //  params: {json: JSON.stringify(json)}
             }).then(function (response) {
                 $scope.logueado = true;
