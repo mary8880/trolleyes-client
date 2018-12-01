@@ -10,7 +10,7 @@ moduleCommon.controller('homeController', ['$scope', '$http', '$location', 'tool
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
             $scope.logeado = true;
-            
+            $scope.userlogeadoid=oSessionService.getUserId();
         } else {
             $scope.userlogeado = "";
         }

@@ -12,6 +12,7 @@ moduleCommon.controller('loginController', ['$scope', '$http', 'toolService', '$
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
             $scope.logeado = true;
+            $scope.userlogeadoid=oSessionService.getUserId();
 
         } else {
             $scope.nologueado = true;

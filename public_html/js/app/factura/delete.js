@@ -22,6 +22,7 @@ moduleFactura.controller('facturaDeleteController', ['$scope', '$http', 'toolSer
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
             $scope.logeado = true;
+            $scope.userlogeadoid=oSessionService.getUserId();
         }
 
         $scope.logout = function () {

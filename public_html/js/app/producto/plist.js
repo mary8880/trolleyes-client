@@ -9,6 +9,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
             $scope.logeado = true;
+            $scope.userlogeadoid=oSessionService.getUserId();
         }
 
         $scope.logout = function () {

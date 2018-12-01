@@ -10,6 +10,7 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
         if (oSessionService.getUserName() !== "") {
             $scope.userlogeado = oSessionService.getUserName();
             $scope.logeado = true;
+            $scope.userlogeadoid = oSessionService.getUserId();
         }
 
         $scope.logout = function () {
@@ -28,7 +29,7 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
         //-------------------------------------------
 
         $scope.createForm = function () {
-          
+
 
             if ($scope.userForm.$valid) {
                 var json = {
@@ -50,22 +51,22 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
                 }).then(function (response) {
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
-                    $scope.creado=true;
+                    $scope.creado = true;
                     location.url('/tipousuario/new');
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;
-                    $scope.creado=false;
+                    $scope.creado = false;
                 });
 
-                
+
             }
         };
         $scope.isActive = toolService.isActive;
 
         $scope.resetForm = function () {
 
-            
+
             $scope.dni = "";
             $scope.nombre = "";
             $scope.ape1 = "";
@@ -73,7 +74,7 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
             $scope.login = "";
             $scope.pass = "";
             $scope.id_tipoUsuario = "";
-            
+
         };
         $scope.isActive = toolService.isActive;
     }
