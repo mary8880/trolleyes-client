@@ -55,7 +55,7 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
 
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob +`/plist/` +$scope.id_usuario+ `/`+ $scope.rpp + `/` + $scope.page);
+            $location.url($scope.ob +`/plistXusuario/` +$scope.id_usuario+ `/`+ $scope.rpp + `/` + $scope.page);
         }
 
 
@@ -67,7 +67,7 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url($scope.ob +`/plist/` +$scope.id_usuario+ `/`+ $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+            $location.url($scope.ob +`/plistXusuario/` +$scope.id_usuario+ `/`+ $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         }
 //        //---------------------get normal--------------
 //        $http({
@@ -88,15 +88,15 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
             url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountXusu&id_usuario='+$scope.id_usuario
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataUsuariosNumber = response.data.message;
-            $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
+            $scope.ajaxDataFactXusuNumber = response.data.message;
+            $scope.totalPages = Math.ceil($scope.ajaxDataFactXusuNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
                 $scope.update();
             }
             pagination2();
         }, function (response) {
-            $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
+            $scope.ajaxDataFactXusuNumber = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
 
@@ -105,16 +105,16 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
             url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob +'&op=getpageXusu&id_usuario='+$scope.id_usuario+  '&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataUsuarios = response.data.message;
+            $scope.ajaxDataFactXusu = response.data.message;
         }, function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
+            $scope.ajaxDataFactXusu = response.data.message || 'Request failed';
         });
 
 
 
         $scope.update = function () {
-            $location.url($scope.ob +`/plist/` +$scope.id_usuario+ `/` +$scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url($scope.ob +`/plistXusuario/` +$scope.id_usuario+ `/` +$scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
 

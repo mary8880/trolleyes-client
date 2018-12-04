@@ -26,18 +26,18 @@
                     <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
                 </div>
                 <!-- FECHA -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.fecha.$invalid && !userForm.fecha.$pristine}">
+<!--                <div class="form-group" ng-class="{ 'has-error' : userForm.fecha.$invalid && !userForm.fecha.$pristine}">
                     <label>Fecha   Año-mes-dia<0000-00-00>  hora<00:00:00></label>
-                    <input type="text" name="fecha"  class="form-control" ng-model="fecha" required>
-                    <p ng-show="userForm.fecha.$invalid && !userForm.fecha.$pristine" class="text-danger">Segundo apellido es necesario</p>
-                </div>
+                    <md-datepicker ng-model="fecha" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+                    <p ng-show="userForm.fecha.$invalid" class="text-danger">Selecciona una fecha</p>
+                </div>-->
                 <!-- IVA -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.iva.$invalid && !userForm.iva.$pristine}">
+<!--                <div class="form-group" ng-class="{ 'has-error' : userForm.iva.$invalid && !userForm.iva.$pristine}">
                     <label>IVA</label>
                     <input type="text" name="iva"  class="form-control" ng-model="iva"  ng-pattern="/^[1-9]{2}$/" required ><p>%</p>
                     <p ng-show="userForm.iva.$error.pattern" class="alert alert-danger" role="alert">Iva no válido</p>
                     <p ng-show="userForm.iva.$error.$invalid && !userForm.iva.$pristine" class="text-danger">El iva es necesario</p>
-                </div>
+                </div>-->
                 <!-- ID USUARIO -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.id_usuario.$invalid && !userForm.id_usuario.$pristine}">
                     <label>Id del Usuario</label>

@@ -36,8 +36,6 @@ moduleFactura.controller('facturaNewController', ['$scope', '$http', 'toolServic
 
             if ($scope.userForm.$valid) {
                 var json = {
-                    fecha: $scope.fecha,
-                    iva: $scope.iva,
                     id_usuario: $scope.id_usuario
                 };
 
