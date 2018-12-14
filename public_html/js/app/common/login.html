@@ -1,4 +1,4 @@
-<header ng-include="'js/app/header.html'"></header>
+<header-component></header-component>
 <main role="main" class="container"> 
 
     <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-5"> 
@@ -23,7 +23,7 @@
                 <!-- pass -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.pass.$invalid && !userForm.pass.$pristine}">
                     <label>Contraseña</label>
-                    <input type="text" name="pass" class="form-control" ng-model="pass" ng-required="true">
+                    <input type="password" name="pass" class="form-control" ng-model="pass" ng-required="true">
                     <p ng-show="userForm.pass.$invalid && !userForm.pass.$pristine" class="text-danger">La contraseña es necesaria</p>
                 </div>
                 <button type="button" ng-click="loginForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Login</button>

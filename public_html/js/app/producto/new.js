@@ -2,31 +2,9 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
     function ($scope, $http, toolService, $routeParams, oSessionService, $location) {
         $scope.id = $routeParams.id;
         $scope.ob = "producto";
-        $scope.logeado = false;
+
         //------------show edited-----------
         $scope.edited = false;
-
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid = oSessionService.getUserId();
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $scope.logeado = false;
-                $scope.userlogeado = "";
-            });
-            $location.url('/');
-//            $scope.ruta.reload();
-//            $location.reload();
-
-        };
-        //-------------------------------------------
 
         $scope.createForm = function () {
 
@@ -38,7 +16,7 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
                     desc: $scope.desc,
                     existencias: $scope.existencias,
                     precio: $scope.precio,
-                    foto: $scope.foto,
+                    foto: "img/boximage0.jpg" ,
                     id_tipoProducto: $scope.id_tipoProducto
                 }
 

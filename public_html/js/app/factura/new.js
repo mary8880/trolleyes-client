@@ -9,28 +9,7 @@ moduleFactura.controller('facturaNewController', ['$scope', '$http', 'toolServic
      
 
         $scope.isActive = toolService.isActive;
-        $scope.logeado = false;
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $scope.logeado = false;
-                $scope.userlogeado = "";
-            });
-            $location.url('/');
-//            $scope.ruta.reload();
-//            $location.reload();
-
-        };
-        //-------------------------------------------
+       
         $scope.createForm = function () {
           
 

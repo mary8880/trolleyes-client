@@ -4,20 +4,6 @@ moduleCommon.controller('loginController', ['$scope', '$http', 'toolService', '$
     function ($scope, $http, toolService, $routeParams, $location, oSessionService, ) {
 
         $scope.ob = "usuario";
-        $scope.isActive = toolService.isActive;
-        $scope.logueado = false;
-        $scope.nologueado = false;
-
-
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-
-        } else {
-            $scope.nologueado = true;
-            $scope.userlogeado = "";
-        }
 
         $scope.loginForm = function () {
         var  pass =forge_sha256($scope.pass)

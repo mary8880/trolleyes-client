@@ -5,30 +5,10 @@ moduleTipoproducto.controller('tipoproductoEditController', ['$scope', '$http', 
         $scope.id = $routeParams.id;
         $scope.ruta = $location.path();
         $scope.ob = "tipoproducto";
-        $scope.logeado = false;
+
         //------------show edited-----------
         $scope.edited = false;
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-        }
 
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $scope.logeado = false;
-                $scope.userlogeado = "";
-            });
-            $location.url('/');
-//            $scope.ruta.reload();
-//            $location.reload();
-
-        };
-        //-------------------------------------------
         $http({
             method: 'GET',
             //withCredentials: true,

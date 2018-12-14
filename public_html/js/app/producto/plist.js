@@ -4,27 +4,6 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
         $scope.ruta = $location.path();
         $scope.ob = "producto";
-        $scope.logeado = false;
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function (response) {
-                $scope.logeado = false;
-                $scope.userlogeado = "";
-                location.url('/home');
-                console.log(response);
-            });
-
-        };
-        //-------------------------------------------
         $scope.mostrar = false;
         $scope.activar = true;
         $scope.ajaxData = "";

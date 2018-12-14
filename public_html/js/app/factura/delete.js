@@ -18,23 +18,7 @@ moduleFactura.controller('facturaDeleteController', ['$scope', '$http', 'toolSer
         $scope.enable = function () {
             $scope.activar = !$scope.activar;
         };
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-        }
 
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $scope.logeado = false;
-            });
-
-        };
-        //-------------------------------------------
         $http({
             method: 'GET',
             //withCredentials: true,

@@ -1,4 +1,4 @@
-<header ng-include="'js/app/header.html'"></header>
+<header-component></header-component>
 <main role="main" class="container">
     <div class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3"> 
         <div class="d-flex mt-5">
@@ -51,11 +51,11 @@
                     <p ng-show="userForm.precio.$invalid && !userForm.precio.$pristine" class="text-danger">El precio es necesario</p>
                 </div>
                 <!--IMAGEN-->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.foto.$invalid && !userForm.foto.$pristine}">
+<!--                <div class="form-group" ng-class="{ 'has-error' : userForm.foto.$invalid && !userForm.foto.$pristine}">
                     <label>Imagen del producto</label>
                     <input type="file" name="foto"  class="form-control" ng-model="foto">
                     <p ng-show="userForm.foto.$invalid && !userForm.foto.$pristine" class="text-danger">La imagen no es válida</p>
-                </div>
+                </div>-->
                
                 <!-- TIPOPRODUCTO -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoProducto.$invalid && !userForm.id_tipoProducto.$pristine}">

@@ -1,0 +1,51 @@
+<!-- Fixed navbar -->
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="home">TROLLEYES</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto"ng-show="h.logeado">
+            <li class="nav-item" ng-class="{'active': h.isActive('/')}">
+                <a class="nav-link" href="home"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+            </li>
+
+            <li class="nav-item"ng-show="h.logeado" ng-class="{'active': h.isActive('/tipousuario/plist') || h.isActive('/tipousuario/view/') || h.isActive('/tipousuario/new/') || h.isActive('/tipousuario/edit/') || h.isActive('/tipousuario/delete/')}">
+               <a class="nav-link" href="tipousuario/plist"><i class="fa fa-users" aria-hidden="true"></i> Tipousuario</a>
+            </li>
+            <li class="nav-item" ng-class="{'active': h.isActive('/usuario/plist') || h.isActive('/usuario/view/') || h.isActive('/usuario/new/') || h.isActive('/usuario/edit/') || h.isActive('/usuario/delete/')}">
+                <a class="nav-link" href="usuario/plist"><i class="fa fa-user" aria-hidden="true"></i>Usuario</a>
+            </li>
+            <li class="nav-item"ng-class="{'active': h.isActive('/factura/plist') || h.isActive('/factura/plistXusuario/') || h.isActive('/factura/view/') || h.isActive('/factura/new/') || h.isActive('/factura/edit/') || h.isActive('/factura/delete/')}">
+                <a class="nav-link" href="factura/plist"><i class="fa fa-paste" aria-hidden="true"></i>Factura</a>
+            </li>
+            <li class="nav-item" ng-class="{'active': h.isActive('/producto/plist') || h.isActive('/producto/view/') || h.isActive('/producto/new/') || h.isActive('/producto/edit/') || h.isActive('/producto/delete/')}">
+                <a class="nav-link" href="producto/plist"><i class="fa fa-cube" aria-hidden="true"></i>Producto</a>
+            </li>
+            <li class="nav-item" ng-class="{'active': h.isActive('/tipoproducto/plist') || h.isActive('/tipoproducto/view/') || h.isActive('/tipoproducto/new/') || h.isActive('/tipoproducto/edit/') || h.isActive('/tipoproducto/delete/')}">
+                <a class="nav-link" href="tipoproducto/plist"><i class="fa fa-cubes" aria-hidden="true"></i>Tipoproducto</a>
+            </li>
+            <li class="nav-item" ng-class="{'active': h.isActive('/producto/tienda')}">
+                <a class="nav-link" href="producto/tienda"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Tienda</a>
+            </li>
+        </ul>
+        <!-------------------------------------------------->
+        <div class="row ml-2 mr-2 btn-group-sm">
+            <div class="btn-group btn-group-justified">
+                <div ng-show="!h.logeado">
+                    <a  href="/trolleyes-client/public_html/login" class="btn btn-warning mt-2">Login</a>
+                </div>
+                <div ng-show="h.logeado">
+                    <span class="mr-3 text-light" >Hola! {{h.userlogeado}}</span>
+                    <button type="button" ng-click="logout()"class="btn btn-secondary mt-2">Logout</button>
+                    <a  href="/trolleyes-client/public_html/usuario/view/{{h.userlogeadoid}}" class="btn btn-warning mt-2"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div>
+                <a  href="/trolleyes-client/public_html/carrito/show" class="btn btn-warning mr-3 ml-3 mt-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <!-------------------------------------------------->
+    </div>
+</nav>

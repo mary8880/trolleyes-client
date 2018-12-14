@@ -4,33 +4,13 @@ moduleUsuario.controller('usuarioNewController', ['$scope', '$http', 'toolServic
     function ($scope, $http, toolService, $routeParams, oSessionService) {
 
         $scope.ob = "usuario";
+         $scope.obj_tipoUsuario = {id: null, desc: null};
         //------------show create-----------
         $scope.creado=false;  
      
 
         $scope.isActive = toolService.isActive;
-        $scope.logeado = false;
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $scope.logeado = false;
-                $scope.userlogeado = "";
-            });
-            $location.url('/');
-//            $scope.ruta.reload();
-//            $location.reload();
-
-        };
-        //-------------------------------------------
+ 
         $scope.createForm = function () {
           
 
@@ -43,7 +23,7 @@ moduleUsuario.controller('usuarioNewController', ['$scope', '$http', 'toolServic
                     ape2: $scope.ape2,
                     login: $scope.login,
                     pass: forge_sha256($scope.pass),
-                    id_tipoUsuario: $scope.id_tipoUsuario
+                     id_tipoUsuario: $scope.obj_tipoUsuario.id
                 };
 
 

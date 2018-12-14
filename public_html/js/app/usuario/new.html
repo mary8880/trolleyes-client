@@ -1,4 +1,4 @@
-<header ng-include="'js/app/header.html'"></header>
+<header-component></header-component>
 <main role="main" class="container">
     <div class="col-md-9 ml-sm-auto col-lg-12 px-4 mt-5 mb-3"> 
         <div class="d-flex mt-5">
@@ -70,12 +70,53 @@
                     <p ng-show="userForm.pass.$error.$invalid && !userForm.pass.$pristine" class="text-danger">La contraseña es necesaria.</p>
                 </div>
                 <!-- TIPOUSUARIO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoUsuario.$invalid && !userForm.id_tipoUsuario.$pristine}">
-                    <label>Tipo Usuario</label>
-                    <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoUsuario" ng-pattern="/^[1-2]{1}$/" required >
-                    <p ng-show="userForm.id_tipoUsuario.$error.pattern" class="alert alert-danger" role="alert">Formato no válido. Elige 1:Administrador o 2:usuario</p>
-                    <p ng-show="userForm.id_tipoUsuario.$invalid && !userForm.id_tipoUsuario.$pristine" class="text-danger">Tipo ususario es necesario. Elige 1:Administrador o 2:usuario</p>
+                
+                <!-- ----------------------MODAL TIPO USUARIO------------------------------------>
+                <div class="mt-4 form-group" ng-class="{'has-error': form.obj_tipoUsuario.$invalid}">
+                    <tipousuario-selection 
+                        class="modal fade" 
+                        id="cadd-location-modal" 
+                        obj="obj_tipoUsuario"
+                        on-tipousuario-set="tipoUsuarioRefresh(this,false)">                          
+                    </tipousuario-selection>
+
+                    <label>Tipo de usuario:</label>
+                    <div class="control">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      data-toggle="modal"
+                                      data-target="#cadd-location-modal">
+                                    <span class="fas fa-search"></span>
+                                </span>
+                            </div>
+                            <input ng-model="obj_tipoUsuario.id"
+                                   ng-change="tipoUsuarioRefresh(this, true)"
+                                   aria-describedby="basic-addon2"
+                                   class="form-control"
+                                   id="obj_tipoUsuario"
+                                   name="obj_tipoUsuario"
+                                   type="number"
+                                   min="1"
+                                   max="100"
+                                   ng-pattern="/^[1-9][0-9]?$|^100$/"
+                                   required
+                                   ng-model-options="{debounce: 1000}">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="tipousuario/view/{{obj_tipoUsuario.id}}">
+                                        <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                                        Tipo de usuario: {{obj_tipoUsuario.desc}}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <p ng-show="form.obj_tipoUsuario.$invalid && !form.obj_tipoUsuario.$pristine"  class="help-block red-text">
+                            Id de usuario inválido.
+                        </p>
+                    </div>
                 </div>
+                <!-- ---------------------------------------------------------->
             </form>        
         </div>
         <div class="col mt-5"  ng-show="!creado">

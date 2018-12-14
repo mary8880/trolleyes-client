@@ -1,4 +1,4 @@
-<header ng-include="'js/app/header.html'"></header>
+<header-component></header-component>
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-lg-12 px-4 mt-5 mb-3" >
@@ -104,6 +104,11 @@
                                     </div>
                                 </div>
                             </th>
+                             <th>
+                                <div class="d-flex ">
+                                    <div class=" p-2 mb-md-0 align-self-center">Lineas</div>
+                                </div>
+                            </th>
                             <th>
                                 <div class="d-flex ">
                                     <div class=" p-2 mb-md-0 align-self-center">Operaciones</div>
@@ -115,6 +120,7 @@
                             <td class="text-center">{{fila.fecha}}</td>
                             <td class="text-center">{{fila.iva}}</td>
                             <td class="text-center">{{fila.id_usuario}}</td>
+                            <td class="text-center"><a href="/trolleyes-client/public_html/linea/plist/{{fila.id}}" class="btn btn-secondary" role="button">num lineas</a></td>
                             <td>
                                 <div class="btn-group mr-2" role="group" aria-label="Basic example">
                                     <a href="/trolleyes-client/public_html/factura/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>

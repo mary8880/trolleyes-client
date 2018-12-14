@@ -4,31 +4,13 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
     function ($scope, $http, toolService, $routeParams, oSessionService, $location) {
         $scope.id = $routeParams.id;
         $scope.ob = "usuario";
-        $scope.logeado = false;
+
+        $scope.obj = null;
+        $scope.result = null;
         //------------show edited-----------
         $scope.edited = false;
 
-        //----------------logueado---------------------
-        if (oSessionService.getUserName() !== "") {
-            $scope.userlogeado = oSessionService.getUserName();
-            $scope.logeado = true;
-            $scope.userlogeadoid=oSessionService.getUserId();
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $scope.logeado = false;
-                $scope.userlogeado = "";
-            });
-            $location.url('/');
-//            $scope.ruta.reload();
-//            $location.reload();
-
-        };
-        //-------------------------------------------
+  
         $http({
             method: 'GET',
             //withCredentials: true,
@@ -42,7 +24,10 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
             $scope.ape2 = response.data.message.ape2;
             $scope.login = response.data.message.login;
             $scope.pass = "*******";
-            $scope.id_tipoUsuario = response.data.message.obj_tipoUsuario.id;
+
+            var id_tipousuario = response.data.message.obj_tipoUsuario.id;
+            var desc_tipousuario = response.data.message.obj_tipoUsuario.desc;
+            $scope.obj_tipoUsuario = {id: id_tipousuario, desc: desc_tipousuario};
         }), function (response) {
             console.log(response);
         };
@@ -64,7 +49,7 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                     ape2: $scope.ape2,
                     login: $scope.login,
                     pass: forge_sha256($scope.pass),
-                    id_tipoUsuario: $scope.id_tipoUsuario
+                    id_tipoUsuario: $scope.obj_tipoUsuario.id
                 }
 
                 $http({
@@ -97,12 +82,12 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                 $scope.ape1 = response.data.message.ape1;
                 $scope.ape2 = response.data.message.ape2;
                 $scope.login = response.data.message.login;
-                $scope.pass = response.data.message.pass;
+
                 $scope.id_tipoUsuario = response.data.message.obj_tipoUsuario.id;
 
             }), function (response) {
                 console.log(response);
-                
+
             };
 
         };
