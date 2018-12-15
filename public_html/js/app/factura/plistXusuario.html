@@ -6,7 +6,7 @@
                 <h1 class="h2 ml-3 mb-3" >Factura de usuario</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-toolbar mb-2 mb-md-0">
-                        <a class="btn btn-warning ml-3 " href="/trolleyes-client/public_html/factura/new">Nuevo</a>
+                        <a class="btn btn-warning ml-3 " href="/trolleyes-client/public_html/factura/new/{{id_usuario}}">Nuevo</a>
                     </div>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <button type="button" class="btn btn-light ml-3 mr-5" ng-click="resetOrder()">
@@ -110,11 +110,11 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-repeat="fila in ajaxDataFactXusu">
+                        <tr ng-repeat="fila in ajaxDataUsuarios">
                             <th class="text-center">{{fila.id}}</th>
                             <td class="text-center">{{fila.fecha}}</td>
                             <td class="text-center">{{fila.iva}}</td>
-                            <td class="text-center">{{fila.id_usuario}}</td>
+                            <td class="text-center">{{fila.obj_usuario.id}}</td>
                             <td>
                                 <div class="btn-group mr-2" role="group" aria-label="Basic example">
                                     <a href="/trolleyes-client/public_html/factura/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>

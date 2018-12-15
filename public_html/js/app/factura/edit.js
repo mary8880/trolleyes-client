@@ -17,7 +17,7 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
                 $scope.id = response.data.message.id;
                 $scope.fecha = response.data.message.fecha;
                 $scope.iva = response.data.message.iva;
-                $scope.id_usuario = response.data.message.id_usuario;
+                $scope.id_usuario = response.data.message.obj_usuario.id;
         }), function (response) {
             console.log(response);
         };
@@ -45,7 +45,7 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
                 }).then(function (data, response) {
                     console.log(data, response);
                     $scope.edited = true;
-                    location.url('/factura/edit');
+//                    location.url('/factura/edit');
                 }, function (response) {
                     console.log(response);
                 });
@@ -64,7 +64,7 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
                 $scope.id = response.data.message.id;
                 $scope.fecha = response.data.message.fecha;
                 $scope.iva = response.data.message.iva;
-                $scope.id_usuario = response.data.message.id_usuario;
+                $scope.id_usuario = response.data.message.obj_usuario.id;
 
             }), function (response) {
                 console.log(response);

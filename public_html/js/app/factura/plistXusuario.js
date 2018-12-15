@@ -4,7 +4,7 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
 
         $scope.ob = "factura";
-        $scope.id_usuario= $routeParams.id;
+        $scope.id_usuario = $routeParams.id;
         $scope.totalPages = 1;
 
 
@@ -32,11 +32,9 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
             }
         }
 
-
         $scope.resetOrder = function () {
-            $location.url($scope.ob +`/plistXusuario/` +$scope.id_usuario+ `/`+ $scope.rpp + `/` + $scope.page);
+            $location.url($scope.ob + '/plistXusuario/' + $scope.rpp + '/' + $scope.page);
         }
-
 
         $scope.ordena = function (order, align) {
             if ($scope.orderURLServidor == "") {
@@ -46,56 +44,49 @@ moduleFactura.controller('facturaPlistXusuarioController', ['$scope', '$http', '
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url($scope.ob +`/plistXusuario/` +$scope.id_usuario+ `/`+ $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+            $location.url($scope.ob + `/plistXusuario/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         }
-//        //---------------------get normal--------------
-//        $http({
-//            method: 'GET',
-//            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getXusu&id='+$scope.id_usuario
-//        }).then(function (response) {
-//            $scope.status = response.status;
-//            $scope.ajaxDataUsuarios= response.data.message;
-//        
-//           // pagination2();
-//        }, function (response) {
-//            $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
-//            $scope.status = response.status;
-//        });
-        //getcount
+
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountXusu&id_usuario='+$scope.id_usuario
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific&id=' + $scope.id_usuario
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataFactXusuNumber = response.data.message;
-            $scope.totalPages = Math.ceil($scope.ajaxDataFactXusuNumber / $scope.rpp);
+            $scope.ajaxDataUsuariosNumber = response.data.message;
+            if ($scope.ajaxDataUsuariosNumber === 0) {
+                $scope.empty = true;
+            } else {
+                $scope.empty = false;
+            }
+            $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
                 $scope.update();
             }
             pagination2();
-        }, function (response) {
-            $scope.ajaxDataFactXusuNumber = response.data.message || 'Request failed';
+        }), function (response) {
+            $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
             $scope.status = response.status;
-        });
+        };
 
+        //getpagespecific
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob +'&op=getpageXusu&id_usuario='+$scope.id_usuario+  '&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpagespecific&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor + '&id=' + $scope.id_usuario
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataFactXusu = response.data.message;
+            $scope.ajaxDataUsuarios = response.data.message;
+            if ($scope.ajaxDataUsuarios.length > 0) {
+                $scope.usuario = $scope.ajaxDataUsuarios[0].obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_usuario.login + ")";
+            }
         }, function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataFactXusu = response.data.message || 'Request failed';
+            $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
-
-
         $scope.update = function () {
-            $location.url($scope.ob +`/plistXusuario/` +$scope.id_usuario+ `/` +$scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url(`usuario/` + $scope.id_usuario + `/` + $scope.ob + `/plistXusuario/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
-
 
 
 

@@ -2,7 +2,7 @@
 
 moduleFactura.controller('facturaNewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, toolService, $routeParams, oSessionService) {
-        $scope.id = $routeParams.id;
+        $scope.id_usuario = $routeParams.id;
         $scope.ob = "factura";
         //------------show create-----------
         $scope.creado=false;  
@@ -44,7 +44,7 @@ moduleFactura.controller('facturaNewController', ['$scope', '$http', 'toolServic
             
             $scope.fecha = "";
             $scope.iva = "";
-            $scope.id_usuario = "";
+            
             
         };
         $scope.isActive = toolService.isActive;

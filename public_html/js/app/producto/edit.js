@@ -21,7 +21,7 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', 'toolSer
             $scope.existencias = response.data.message.existencias;
             $scope.precio = response.data.message.precio;
             $scope.foto = response.data.message.foto;
-            $scope.id_tipoProducto = response.data.message.id_tipoProducto;
+            $scope.id_tipoProducto = response.data.message.obj_tipoProducto.id;
         }), function (response) {
             console.log(response);
         };

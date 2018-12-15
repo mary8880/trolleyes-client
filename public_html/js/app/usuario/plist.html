@@ -157,13 +157,13 @@
                             <td class="text-center">{{fila.login}}</td>
                             <td><a href="/trolleyes-client/public_html/tipousuario/plist">{{fila.obj_tipoUsuario.desc}}</a></td>
                             <td>
-                                <div class="btn-group mr-2" role="group" aria-label="Basic example">
+                                <div class="btn-group mr-2 mt-2" role="group" aria-label="Basic example">
                                     <a href="/trolleyes-client/public_html/usuario/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>
                                     <a href="/trolleyes-client/public_html/usuario/edit/{{fila.id}}" class="btn btn-secondary" role="button">Editar</a>
                                     <a href="/trolleyes-client/public_html/usuario/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
                                     
                                 </div>
-                                <a href="/trolleyes-client/public_html/factura/plistXusuario/{{fila.id}}" class="btn btn-warning" role="button">  Ver Facturas </a>
+                                <a href="/trolleyes-client/public_html/factura/plistXusuario/{{fila.id}}" class="btn btn-warning mt-2" role="button">  Ver Facturas  <span class="badge badge-secondary">{{fila.numFacturas}}</span></a>
                             </td>
                         </tr>
                     </table>
