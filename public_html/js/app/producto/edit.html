@@ -52,18 +52,63 @@
                     <p ng-show="userForm.precio.$invalid" class="text-danger">El precio es necesario</p>
                 </div>
                 <!--IMAGEN-->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.foto.$invalid}">
+               
+                <div class="form-group">
                     <label>Imagen del producto</label>
-                    <input type="file" name="foto"  class="form-control" ng-model="foto">
-                    <p ng-show="userForm.foto.$invalid" class="text-danger">La imagen no es válida</p>
+                    <div class="row">
+                        <div class="mx-auto pb-5"> 
+                            <img id="output" ng-src="http://localhost:8081/imagenes/{{foto}}" style="width: 128px; height: 128px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mx-auto pb-5">
+                            <!--ARREGLO EN UNA LINEA DE PREVIEW DE NUEVA FOTO-->
+                            <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
+                        </div>
+                    </div>
                 </div>
 
-                <!-- TIPOPRODUCTO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoProducto.$invalid}">
-                    <label>Tipo Producto</label>
-                    <input type="text" name="id_tipoProducto"  class="form-control" ng-model="id_tipoProducto" ng-required="true" >
+                <!--TIPOPRODUCTO-->
 
-                    <p ng-show="userForm.id_tipoProducto.$invalid" class="text-danger">Tipo producto es necesario. </p>
+                <label for="obj_tipoProducto">Tipo de producto:</label>
+                <div class="form-group row" style="padding-left:15px;">
+                    <tipoproducto-selection 
+                        class="modal fade" 
+                        id="cadd-location-modal" 
+                        obj="obj_tipoProducto"
+                        on-tipoproducto-set="tipoProductoRefresh(this,false)">                          
+                    </tipoproducto-selection>
+
+                    <div class="control">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      data-toggle="modal"
+                                      data-target="#cadd-location-modal">
+                                    <span class="fas fa-search"></span>
+                                </span>
+                            </div>
+                            <input ng-model="obj_tipoProducto.id"
+                                   ng-change="tipoProductoRefresh(this, true)"
+                                   aria-describedby="basic-addon2"
+                                   class="form-control col-sm-2"
+                                   id="obj_tipoProducto"
+                                   name="obj_tipoProducto"
+                                   type="text"
+                                   ng-required
+                                   ng-model-options="{debounce: 1000}"
+                                   maxlength="2" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="/trolleyes-client/public_html/tipoproducto/view/{{obj_tipoProducto.id}}">
+                                        <span class="p-2 bd-highlight"><i class="fas fa-boxes"></i></span>
+                                        Tipo de producto: {{obj_tipoProducto.desc}}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div ng-show="!userForm.obj_tipoProducto.$valid">Tipo de producto no válido</div>
+                    </div>
                 </div>
             </form>        
         </div>
@@ -72,7 +117,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>
-                        
+
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label="Second group"> 
                         <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
