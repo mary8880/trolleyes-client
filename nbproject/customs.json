@@ -1,6 +1,7 @@
 {
     "elements": {
         "tipoproducto-selection": {},
+        "producto-selection": {},
         "header-component": {},
         "tipousuario-selection": {}
     },

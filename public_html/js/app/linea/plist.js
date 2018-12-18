@@ -1,10 +1,10 @@
 'use strict'
 
-moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
-
+        $scope.ob = "linea";
         $scope.totalPages = 1;
-        $scope.ob = "usuario";
+        $scope.facturaid = $routeParams.id;
 
 
         if (!$routeParams.order) {
@@ -16,7 +16,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = 10;
+            $scope.rpp = "10";
         } else {
             $scope.rpp = $routeParams.rpp;
         }
@@ -31,11 +31,9 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
             }
         }
 
-
         $scope.resetOrder = function () {
-            $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page);
-        };
-
+            $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
+        }
 
         $scope.ordena = function (order, align) {
             if ($scope.orderURLServidor == "") {
@@ -45,16 +43,21 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
-        };
+            $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+        }
 
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific' + '&id=' + $scope.facturaid
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
+            if ($scope.ajaxDataUsuariosNumber === 0) {
+                    $scope.empty = true;
+                } else {
+                    $scope.empty = false;
+                }
             $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
@@ -66,25 +69,23 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
             $scope.status = response.status;
         });
 
+        //getpagespecific
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpagespecific&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor + '&id=' + $scope.facturaid
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
+            $scope.usuario = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.login + ")";
+            $scope.userid = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.id;
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
-
-
         $scope.update = function () {
-            $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
-        };
-
-
-
+            $location.url(`factura/` + $scope.facturaid + `/` + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+        }
 
         //paginacion neighbourhood
         function pagination2() {
@@ -104,22 +105,12 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
                 }
             }
         }
-
-        $scope.numfact = function ($numFacturas) {
-              if($numFacturas===0){
-                return true;
-            }else{
-                return false;
-            }
-        };
+        
+        $scope.create = function () {
+            $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + '/new');
+        }
 
 
         $scope.isActive = toolService.isActive;
-
-
-
     }
-
-
-
 ]);

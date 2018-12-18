@@ -13,7 +13,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
         $scope.enable = function () {
             $scope.activar = !$scope.activar;
         }
-        $scope.productos = function () {
+//        $scope.productos = function () {
             $http({
                 method: 'GET',
                 //withCredentials: true,
@@ -25,11 +25,11 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
                 $scope.ajaxDataProductos = response.data.message || 'Request failed';
                 $scope.status = response.status;
             });
-        }
+//        }
 
-        $scope.productosLimpiar = function () {
-            $scope.ajaxDataProductos = "";
-        }
+//        $scope.productosLimpiar = function () {
+//            $scope.ajaxDataProductos = "";
+//        }
 
 //        $scope.crearProductos = function () {
 //            $http({

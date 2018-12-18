@@ -3,10 +3,18 @@
     <div class="row">
         <main role="main" class="col-lg-12 px-4 mt-5 mb-3" >
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
-                <h1 class="h2 ml-3 mb-3" >Tipos de usuarios</h1>
+                <div class="col-12 mb-2">
+                    
+                <h1 class="h2 ml-3 mb-3" ><i class="fa fa-paste img-responsive" aria-hidden="true"></i> Lineas de productos en factura nº
+                    <a class="btn btn-light btn-lg font-weight-bold" href="/trolleyes-client/public_html/factura/view/{{facturaid}}">{{facturaid}}</a>
+                </h1>
+                <h4 class="h5 ml-3 mb-3" >Usuario: {{usuario}} nº{{userid}}
+                    <a class="btn btn-secondary ml-3 " href="/trolleyes-client/public_html/usuario/view/{{userid}}">Ver</a>
+                </h4>
+                </div>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-toolbar mb-2 mb-md-0">
-                    <a class="btn btn-warning ml-3 " href="/trolleyes-client/public_html/tipousuario/new">Nuevo</a>
+                        <a class="btn btn-warning ml-3 font-weight-bold" href="/trolleyes-client/public_html/factura/{{facturaid}}/linea/new">Nueva linea</a>
                     </div>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <button type="button" class="btn btn-light ml-3 mr-5" ng-click="resetOrder()">
@@ -14,7 +22,7 @@
                         </button>
                         <div class="btn-group ml-3 md-4" style="width:200px;">
                             <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
-                            <select class="form-control " style="width:50px;" 
+                            <select class="form-control " style="width:70px;" 
                                     ng-change="update()" 
                                     ng-model="rpp">
                                 <option value="5">5</option>
@@ -30,19 +38,19 @@
                         <nav aria-label="paginacion">
                             <ul class="pagination">
                                 <li class="page-item">
-                                    <a class="page-link" ng-show="page > 2" href="tipousuario/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                                    <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" ng-show="page > 1" href="tipousuario/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                                    <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
                                 </li>
                                 <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                                    <a class="page-link" href="tipousuario/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                                    <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" ng-show="page != totalPages" href="tipousuario/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                                    <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="tipousuario/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                                    <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
                                 </li>
                             </ul>
                         </nav>
@@ -53,7 +61,7 @@
                         <tr>
                             <th>
                                 <div class="d-flex">
-                                    <div class=" p-2 mb-md-0 align-self-center text-center">Id</div>
+                                    <div class=" p-2 mb-md-0">Id</div>
                                     <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
                                             <i class="fas fa-long-arrow-alt-up"></i>
@@ -66,13 +74,27 @@
                             </th>
                             <th>
                                 <div class="d-flex">
-                                    <div class=" p-2 align-self-center text-center">Descripción</div>
+                                    <div class=" p-2 align-self-center">Producto</div>
                                     <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('desc', 'asc')">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'asc')">
                                             <a class="fas fa-long-arrow-alt-up" ></a>
 
                                         </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('desc', 'desc')">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="d-flex">
+                                    <div class=" p-2 align-self-center">Cantidad</div>
+                                    <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'asc')">
+                                            <a class="fas fa-long-arrow-alt-up" ></a>
+
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'desc')">
                                             <i class="fas fa-long-arrow-alt-down"></i>
                                         </button>
                                     </div>
@@ -80,21 +102,22 @@
                             </th>
                             <th>
                                 <div class="d-flex ">
-                                    <div class=" p-2 mb-md-0 align-self-center">Operaciones</div>
+                                    <div class=" p-2 mb-md-0 align-self-center text-center">Operaciones</div>
                                 </div>
                             </th>
                         </tr>
                         <tr ng-repeat="fila in ajaxDataUsuarios">
                             <td class="text-center font-weight-bold">{{fila.id}}</td>
-                            <td class="text-center">{{fila.desc}}</td>
+                            <td class="text-center">{{fila.obj_producto.desc}}</td>
+                            <td class="text-center">{{fila.cantidad}}</td>
                             <td>
                                 <div class="btn-group mr-2" role="group" aria-label="Basic example">
-                                    <a href="/trolleyes-client/public_html/tipousuario/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>
-                                    <a href="/trolleyes-client/public_html/tipousuario/edit/{{fila.id}}" class="btn btn-secondary" role="button">Editar</a>
-                                    <a href="/trolleyes-client/public_html/tipousuario/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
+                                    <a href="/trolleyes-client/public_html/{{ob}}/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>
+                                    <a href="/trolleyes-client/public_html/{{ob}}/edit/{{fila.id}}" class="btn btn-secondary" role="button">Editar</a>
+                                    <a href="/trolleyes-client/public_html/{{ob}}/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
                                 </div>
                             </td>
-                            
+
                         </tr>
                     </table>
                 </div>

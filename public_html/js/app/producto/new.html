@@ -15,7 +15,7 @@
         </div>
     </div> 
     <div class="row">  
-          <div class="col-sm-6 mt-5 mb-5 ml-3" >
+        <div class="col-sm-6 mt-5 mb-5 ml-3" >
             <!-- FORM ============ -->
 
             <form name="userForm"  novalidate ng-show="!creado">
@@ -28,7 +28,7 @@
                 <div class="form-group" ng-class="{ 'has-error' : userForm.codigo.$invalid && !userForm.codigo.$pristine}">
                     <label>Código</label>
                     <input type="text" class="form-control"  id="codigo" name="dni" ng-model="codigo" required>
-                    
+
                     <p ng-show="userForm.codigo.$invalid && !userForm.codigo.$pristine" class="text-danger" >El código es necesario</p>
                 </div>
                 <!-- Descripción -->
@@ -51,18 +51,61 @@
                     <p ng-show="userForm.precio.$invalid && !userForm.precio.$pristine" class="text-danger">El precio es necesario</p>
                 </div>
                 <!--IMAGEN-->
-<!--                <div class="form-group" ng-class="{ 'has-error' : userForm.foto.$invalid && !userForm.foto.$pristine}">
+                <div class="form-group">
                     <label>Imagen del producto</label>
-                    <input type="file" name="foto"  class="form-control" ng-model="foto">
-                    <p ng-show="userForm.foto.$invalid && !userForm.foto.$pristine" class="text-danger">La imagen no es válida</p>
-                </div>-->
-               
+                    <div class="row">
+                        <div class="mx-auto pb-5"> 
+                            <img id="output" ng-src="http://localhost:8081/imagenes/foto.jpg" style="width: 128px; height: 128px;">
+                        </div>}
+                    </div>
+                    <div class="row">
+                        <div class="mx-auto pb-5">
+                            <!--ARREGLO EN UNA LINEA DE PREVIEW DE NUEVA FOTO-->
+                            <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- TIPOPRODUCTO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.id_tipoProducto.$invalid && !userForm.id_tipoProducto.$pristine}">
-                    <label>Tipo Producto</label>
-                    <input type="text" name="id_tipoUsuario"  class="form-control" ng-model="id_tipoProducto" ng-pattern="/^[1-4]{1}$/" required >
-                    <p ng-show="userForm.id_tipoProducto.$error.pattern" class="alert alert-danger" role="alert">Formato no válido. </p>
-                    <p ng-show="userForm.id_tipoProducto.$invalid && !userForm.id_tipoProducto.$pristine" class="text-danger">Tipo producto es necesario. </p>
+                <label for="obj_tipoProducto">Tipo de producto:</label>
+                <div class="form-group row" style="padding-left:15px;">
+                    <tipoproducto-selection 
+                        class="modal fade" 
+                        id="cadd-location-modal" 
+                        obj="obj_tipoProducto"
+                        on-tipoproducto-set="tipoProductoRefresh(this,false)">                          
+                    </tipoproducto-selection>
+
+                    <div class="control">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      data-toggle="modal"
+                                      data-target="#cadd-location-modal">
+                                    <span class="fas fa-search"></span>
+                                </span>
+                            </div>
+                            <input ng-model="obj_tipoProducto.id"
+                                   ng-change="tipoProductoRefresh(this, true)"
+                                   aria-describedby="basic-addon2"
+                                   class="form-control col-sm-2"
+                                   id="obj_tipoProducto"
+                                   name="obj_tipoProducto"
+                                   type="text"
+                                   ng-required
+                                   ng-model-options="{debounce: 1000}"
+                                   maxlength="2" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="/trolleyes-client/public_html/tipoproducto/view/{{obj_tipoProducto.id}}">
+                                        <span class="p-2 bd-highlight"><i class="fas fa-boxes"></i></span>
+                                        Tipo de producto: {{obj_tipoProducto.desc}}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div ng-show="!userForm.obj_tipoProducto.$valid">Tipo de producto no válido</div>
+                    </div>
                 </div>
             </form>        
         </div>

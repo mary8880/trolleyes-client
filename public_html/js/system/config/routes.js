@@ -29,13 +29,20 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipoproducto/edit/:id?', {templateUrl: 'js/app/tipoproducto/edit.html', controller: 'tipoproductoEditController'});
         $routeProvider.when('/tipoproducto/delete/:id?', {templateUrl: 'js/app/tipoproducto/delete.html', controller: 'tipoproductoDeleteController'});
         //-----------------------------producto---------------------------------------------
-        $routeProvider.when('/producto/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/producto/plist.html', controller: 'productoPlistController'});
+        $routeProvider.when('/producto/plist/:rpp?/:page?/:order?/', {templateUrl: 'js/app/producto/plist.html', controller: 'productoPlistController'});
         $routeProvider.when('/producto/view/:id?', {templateUrl: 'js/app/producto/view.html', controller: 'productoViewController'});
         $routeProvider.when('/producto/new/:id?', {templateUrl: 'js/app/producto/new.html', controller: 'productoNewController'});
         $routeProvider.when('/producto/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController'});
         $routeProvider.when('/producto/delete/:id?', {templateUrl: 'js/app/producto/delete.html', controller: 'productoDeleteController'});
         $routeProvider.when('/producto/tienda/:id?', {templateUrl: 'js/app/producto/tienda.html', controller: 'productoTiendaController'});
-        
+        //-----------------------------linea---------------------------------------------
+        $routeProvider.when('/factura/:id/linea/plist', {templateUrl: 'js/app/linea/plist.html', controller: 'lineaPlistController'});
+        $routeProvider.when('/factura/:id/linea/new', {templateUrl: 'js/app/linea/new.html', controller: 'lineaNewController'});
+        $routeProvider.when('/linea/view/:id', {templateUrl: 'js/app/linea/view.html', controller: 'lineaViewController'});
+        $routeProvider.when('/linea/edit/:id', {templateUrl: 'js/app/linea/edit.html', controller: 'lineaEditController'});
+        $routeProvider.when('/linea/delete/:id', {templateUrl: 'js/app/linea/delete.html', controller: 'lineaDeleteController'});
+        $routeProvider.when('/factura/:id/linea/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/linea/plist.html', controller: 'lineaPlistController'});
+
         
        $routeProvider.when('/carrito/show', {templateUrl: 'js/app/carrito/show.html', controller: 'productoShowController'}); 
         

@@ -48,12 +48,12 @@
                             </th>
                         </tr>
                         <tr>
-                            <td class="text-center">{{ajaxData.id}}</td>
+                            <td class="text-center font-weight-bold">{{ajaxData.id}}</td>
                             <td class="text-center">{{ajaxData.codigo}}</td>
                             <td class="text-center">{{ajaxData.desc}}</td>
                             <td class="text-center">{{ajaxData.existencias}}</td>
                             <td class="text-center">{{ajaxData.precio}}</td>
-                            <td class="text-center">{{ajaxData.id_tipoProducto}}</td>
+                            <td class="text-center"><a href="/trolleyes-client/public_html/tipoproducto/view/{{ajaxData.obj_tipoProducto.desc}}"  role="button">{{ajaxData.obj_tipoProducto.desc}}</a></td>
                             <td class="text-center">
                                 <div class="btn-group mr-2" role="group" aria-label="Basic example">
                                     <a href="/trolleyes-client/public_html/producto/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
