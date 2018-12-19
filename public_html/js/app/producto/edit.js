@@ -30,10 +30,10 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', 'toolSer
             var foto;
             if ($scope.myFile !== undefined) {
                 //Si el nombre de la imagen es "Foto" significa que es la de por defecto, se le deja intacta
-                if ($scope.myFile.name == "Foto") {
+                if ($scope.myFile.name == "Foto.jpg") {
                     foto = $scope.myFile.name;
                     //Si la imagen que tenía el producto era la predefinida y me suben una nueva foto diferente.
-                } else if ($scope.foto == "Foto" && $scope.myFile.name != "Foto") {
+                } else if ($scope.foto == "Foto.jpg" && $scope.myFile.name != "Foto.jpg") {
                     foto = guid() + $scope.myFile.name;
                 } else {
                     foto = $scope.foto;
@@ -51,7 +51,7 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', 'toolSer
                     desc: $scope.desc,
                     existencias: $scope.existencias,
                     precio: $scope.precio,
-                    foto: $scope.foto,
+                    foto: foto,
                     id_tipoProducto: $scope.obj_tipoProducto.id
                 }
 
@@ -63,12 +63,11 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', 'toolSer
                 }).then(function (data, response) {
                     console.log(data, response);
                     $scope.edited = true;
-                    location.url('/producto/edit');
                     $scope.desc = response.data.message.desc;
                 }, function (response) {
                     console.log(response);
                     $scope.edited = true;
-                    location.url('/producto/edit');
+                    
                 });
             }
         };
@@ -111,7 +110,7 @@ moduleProducto.controller('productoEditController', ['$scope', '$http', 'toolSer
             } else {
                 form.userForm.obj_tipoProducto.$setValidity('valid', true);
             }
-        }
+        };
 
         function uploadPhoto(name) {
             //Solucion mas cercana
