@@ -14,10 +14,14 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
             url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=get&id=' + $scope.id
         }).then(function (response) {
             console.log(response);
-                $scope.id = response.data.message.id;
-                $scope.fecha = response.data.message.fecha;
-                $scope.iva = response.data.message.iva;
-                $scope.id_usuario = response.data.message.obj_usuario.id;
+            $scope.id = response.data.message.id;
+            $scope.myDate = new Date(response.data.message.fecha);
+            $scope.iva = response.data.message.iva;
+            $scope.obj_usuario = {
+                id: response.data.message.obj_usuario.id,
+                nombre: response.data.message.obj_usuario.nombre,
+                nombrecompleto: response.data.message.obj_usuario.nombre + " " + response.data.message.obj_usuario.ape1
+            }
         }), function (response) {
             console.log(response);
         };
@@ -32,9 +36,10 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
             if ($scope.userForm.$valid) {
 
                 var json = {
-                    fecha: $scope.fecha,
+                    id: $scope.id,
                     iva: $scope.iva,
-                    id_usuario: $scope.id_usuario
+                    fecha: $scope.myDate,
+                    id_usuario:  $scope.obj_usuario.id
                 }
 
                 $http({
@@ -52,6 +57,23 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
 
             }
         };
+          $scope.usuarioRefresh = function (f, consultar) {
+            var form = f;
+            if (consultar) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=' + $scope.obj_usuario.id
+                }).then(function (response) {
+                    $scope.obj_usuario = response.data.message;
+                    form.userForm.obj_usuario.$setValidity('valid', true);
+                }, function (response) {
+                    form.userForm.obj_usuario.$setValidity('valid', false);
+                });
+            } else {
+                form.userForm.obj_usuario.$setValidity('valid', true);
+            }
+        };
+
         $scope.isActive = toolService.isActive;
 
         $scope.resetForm = function () {
@@ -68,7 +90,7 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
 
             }), function (response) {
                 console.log(response);
-                
+
             };
 
         };

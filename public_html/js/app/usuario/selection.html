@@ -1,0 +1,229 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Seleccionar un usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Listado de usuarios</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-light" ng-click="c.resetOrder()">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <div class="btn-group" style="width:400px;">
+                        <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                        <select class="form-control"
+                                ng-change="c.update()"
+                                ng-model="c.rpp">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+             <nav aria-label="paginacion" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" ng-class="{'disabled':(c.page == 1)}">
+                        <a class="page-link" ng-click="c.cambiarPagina(1)"><span>&laquo;</span></a>
+                    </li>
+                    <li class="page-item" ng-class="{'disabled':(c.page == 1)}">
+                        <a class="page-link" ng-click="c.cambiarPagina(c.page-1)"><span>&lsaquo;</span></a>
+                    </li>
+                    <li class="page-item" ng-class="{'disabled':(c.page == 1)}">
+                        <a class="page-link" ng-click="c.cambiarPagina(1)">1</a>
+                    </li>
+
+                    <li class="page-item" ng-class="{'active':(p == c.page), 'disabled':(p === '...')}" ng-repeat="p in c.list track by $index">
+                        <a class="page-link" ng-click="c.cambiarPagina(p)">{{p}}</a>
+                    </li>
+
+                    <li class="page-item" ng-class="{'disabled':(c.page == c.totalPages), 'ng-hide':(c.totalPages == 1)}">
+                        <a class="page-link" ng-click="c.cambiarPagina(c.totalPages)">{{c.totalPages}}</a>
+                    </li>
+                    <li class="page-item" ng-class="{'disabled':(c.page == c.totalPages)}">
+                        <a class="page-link" ng-click="c.cambiarPagina(c.totalPages--1)"><span>&rsaquo;</span></a>
+                    </li>
+                    <li class="page-item" ng-class="{'disabled':(c.page == c.totalPages)}">
+                        <a class="page-link" ng-click="c.cambiarPagina(c.totalPages)"><span>&raquo;</span></a>
+                    </li>
+                </ul>
+            </nav>
+
+                        <div class="table-responsive">
+                <table class="table table-striped table-sm"  style="text-align: center;">
+                    <tr>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        ID
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('id', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('id', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        DNI
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('dni', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('dni', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Nombre
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('nombre', 'asc')">
+                                            <a class="fas fa-long-arrow-alt-up"></a>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('nombre', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Primer apellido
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('ape1', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('ape1', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Segundo apellido
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('ape2', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('ape2', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Nombre usuario
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('login', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('login', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Tipo de usuario
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('obj_tipoUsuario.id', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="c.ordena('obj_tipoUsuario.id', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>Acciones</p>
+                                </div>
+                            </div>
+                        </th>
+                    
+                    </tr>
+                    <tr ng-repeat="fila in c.data">
+                        <td>{{fila.id}}</td>
+                        <td>{{fila.dni}}</td>
+                        <td>{{fila.nombre}}</td>
+                        <td>{{fila.ape1}}</td>
+                        <td>{{fila.ape2}}</td>
+                        <td>{{fila.login}}</td>
+                        <td>{{fila.obj_tipoUsuario.desc}}</td>
+                        <td>
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a class="btn btn-default btn-xs" ng-click="c.save(fila.id,fila.nombre)" data-dismiss="modal">
+                                        <i class="fa fa-reply" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" ng-click="c.newVariableAndValue.name = '';c.newVariableAndValue.value = ''">Reset</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="c.save()">Save</button>
+        </div>
+    </div>
+</div>

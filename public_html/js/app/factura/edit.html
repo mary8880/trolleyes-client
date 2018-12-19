@@ -29,9 +29,14 @@
                 </div>
                 <!-- FECHA -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.fecha.$invalid && !userForm.fecha.$pristine}">
-                    <label>Fecha   Año-mes-dia<0000-00-00>  hora<00:00:00></label>
-                    <input type="text" name="fecha"  class="form-control" ng-model="fecha" required>
-                    <p ng-show="userForm.fecha.$invalid && !userForm.fecha.$pristine" class="text-danger">Segundo apellido es necesario</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Fecha</label>
+                        </div>
+                        <div class="col-12">
+                            <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                        </div>
+                    </div>
                 </div>
                 <!-- IVA -->
                 <div class="form-group" ng-class="{ 'has-error' : userForm.iva.$invalid && !userForm.iva.$pristine}">
@@ -41,10 +46,45 @@
                     <p ng-show="userForm.iva.$error.$invalid && !userForm.iva.$pristine" class="text-danger">El iva es necesario</p>
                 </div>
                 <!-- ID USUARIO -->
-                <div class="form-group" ng-class="{ 'has-error' : userForm.id_usuario.$invalid && !userForm.id_usuario.$pristine}">
-                    <label>Id del Usuario</label>
-                    <input type="text" name="id_usuario"  class="form-control" ng-model="id_usuario" required >
-                    <p ng-show="userForm.id_usuario.$invalid && !userForm.id_usuario.$pristine" class="text-danger">Id del usuario es necesario.</p>
+                <label for="obj_usuario">Usuario:</label>
+                <div class="form-group row" style="padding-left:15px;">
+                    <usuario-selection 
+                        class="modal fade" 
+                        id="cadd-location-modal" 
+                        obj="obj_usuario"
+                        on-usuario-set="usuarioRefresh(this,false)">                          
+                    </usuario-selection>
+
+                    <div class="control">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      data-toggle="modal"
+                                      data-target="#cadd-location-modal">
+                                    <span class="fas fa-search"></span>
+                                </span>
+                            </div>
+                            <input ng-model="obj_usuario.id"
+                                   ng-change="usuarioRefresh(this, true)"
+                                   aria-describedby="basic-addon2"
+                                   class="form-control col-sm-2"
+                                   id="obj_usuario"
+                                   name="obj_usuario"
+                                   type="text"
+                                   ng-required
+                                   ng-model-options="{debounce: 1000}"
+                                   maxlength="2" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="/trolleyes-client/public_html/usuario/view/{{obj_usuario.id}}">
+                                        <span class="p-2 bd-highlight"><i class="fas fa-user"></i></span>
+                                        Usuario: {{obj_usuario.nombre}}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div ng-show="!userForm.obj_usuario.$valid">Usuario no válido</div>
+                    </div>
                 </div>
             </form>        
         </div>
@@ -53,10 +93,10 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>
-                        
+
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label="Second group"> 
-                       <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
+                        <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
                     </div>
 
 
