@@ -119,7 +119,7 @@ function cController($http) {
         var prev_1 = (self.page - self.valorNeighbourhood);
         var prev_2 = (self.page - self.valorNeighbourhood - 1);
         var post_1 = (self.page - -self.valorNeighbourhood);
-        var post_2 = (self.page - -seldvalorNeighbourhood + 1);
+        var post_2 = (self.page - -self.valorNeighbourhood + 1);
 
         for (var i = 2; i <= self.totalPages - 1; i++) {
             if (i >= prev_1 && i <= post_1) {

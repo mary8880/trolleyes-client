@@ -3,7 +3,7 @@
     <div class="row">
         <main role="main" class="col-lg-12 px-4 mt-5 mb-3" >
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
-                <h1 class="h2 ml-3 mb-3" >Tipos de usuarios</h1>
+                <h1 class="h2 ml-3 mb-3" ><i class="fa fa-users" aria-hidden="true"></i> Tipos de usuarios</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-toolbar mb-2 mb-md-0">
                     <a class="btn btn-warning ml-3 " href="/trolleyes-client/public_html/tipousuario/new">Nuevo</a>
@@ -14,7 +14,7 @@
                         </button>
                         <div class="btn-group ml-3 md-4" style="width:200px;">
                             <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
-                            <select class="form-control " style="width:50px;" 
+                            <select class="form-control " style="width:100px;" 
                                     ng-change="update()" 
                                     ng-model="rpp">
                                 <option value="5">5</option>
@@ -68,11 +68,11 @@
                                 <div class="d-flex">
                                     <div class=" p-2 align-self-center text-center">Descripción</div>
                                     <div class="mt-auto p-2 align-self-center btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('desc', 'asc')">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('tipousuario.desc', 'asc')">
                                             <a class="fas fa-long-arrow-alt-up" ></a>
 
                                         </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('desc', 'desc')">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('tipousuario.desc', 'desc')">
                                             <i class="fas fa-long-arrow-alt-down"></i>
                                         </button>
                                     </div>
