@@ -45,7 +45,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
 
         
        $routeProvider.when('/carrito/show', {templateUrl: 'js/app/carrito/show.html', controller: 'productoShowController'}); 
-        
+       $routeProvider.when('/carrito/buy', {templateUrl: 'js/app/carrito/buy.html', controller: 'productoBuyController'});
         //----------------------------------------------------------------------------------
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

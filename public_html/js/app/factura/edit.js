@@ -50,7 +50,6 @@ moduleFactura.controller('facturaEditController', ['$scope', '$http', 'toolServi
                 }).then(function (data, response) {
                     console.log(data, response);
                     $scope.edited = true;
-//                    location.url('/factura/edit');
                 }, function (response) {
                     console.log(response);
                 });

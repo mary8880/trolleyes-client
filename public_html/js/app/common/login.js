@@ -23,8 +23,6 @@ moduleCommon.controller('loginController', ['$scope', '$http', 'toolService', '$
 
             });
             $location.url('/');
-//            $scope.ruta.reload();
-//            $location.reload();
 
         };
         $scope.isActive = toolService.isActive;

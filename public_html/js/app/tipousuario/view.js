@@ -19,6 +19,7 @@ moduleTipousuario.controller('tipousuarioViewController', ['$scope', '$http', '$
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxData = response.data.message;
+            $scope.desc=response.data.message.desc;
         }, function (response) {
             $scope.ajaxData = response.data.message || 'Request failed';
             $scope.status = response.status;

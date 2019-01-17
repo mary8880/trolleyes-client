@@ -1,4 +1,4 @@
-<header-component></header-component>
+<!--<header-component></header-component>
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-lg-12 px-4 mt-5 mb-3" >
@@ -44,4 +44,61 @@
         </main>
     </div>
 </div>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>-->
+
+
+
+<header-component></header-component>
+<main role="main" class="container"> 
+
+    <div class="col-lg-12 px-4 mt-5 mb-3"> 
+        <div class="d-flex mt-5">
+            <div class="col-lg-11 mt-5">
+                <h1 class="h2 ml-3 mb-3" >Tipo de Producto</h1>
+                <p  class=" ml-3 mb-3">Ver tipo de producto</p>
+            </div>
+            <div class="col mt-5">
+                <div class="btn-group" role="group" aria-label="Second group"  >
+                    <a href="/trolleyes-client/public_html/{{ob}}/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
+                    <a href="/trolleyes-client/public_html/{{ob}}/plist" class="btn btn-secondary btn-md" >Listado</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="row">  
+
+        <div class="col-sm-6 mt-5 mb-5 ml-3" >
+            <!-- FORM ============ -->
+
+            <form name="userForm" ng-show="!edited" >
+                <!-- ID-->
+                <div class="form-group">
+                    <label>Id</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+
+                <!-- NOMBRE -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.desc.$invalid}">
+                    <label>Descripción</label>
+                    <input type="text" name="desc" readonly="readonly" class="form-control" ng-model="ajaxData.desc" >
+                </div>  
+            </form>        
+        </div>
+        <div class="col mt-5 " ng-show="!edited" >
+            <div class="row ml-5" >
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a href="/trolleyes-client/public_html/{{ob}}/delete/{{ajaxData.id}}" class="btn btn-secondary" role="button">Eliminar</a>
+                        
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group"> 
+                        <a href="/trolleyes-client/public_html/{{ob}}/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

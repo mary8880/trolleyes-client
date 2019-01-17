@@ -41,12 +41,10 @@ moduleTipousuario.controller('tipousuarioDeleteController', ['$scope', '$http','
             $scope.status = response.status;
             $scope.ajaxData = response.data.message;
             $scope.borrado=true;
-            location.url('/delete');
         }, function (response) {
             $scope.ajaxData = response.data.message || 'Request failed';
             $scope.status = response.status;
             $scope.borrado=false;
-            location.url('/delete');
         }); 
           $scope.isActive = toolService.isActive;  
           

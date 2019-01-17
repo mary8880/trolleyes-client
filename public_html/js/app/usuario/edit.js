@@ -60,7 +60,7 @@ moduleUsuario.controller('usuarioEditController', ['$scope', '$http', 'toolServi
                 }).then(function (data, response) {
                     console.log(data, response);
                     $scope.edited = true;
-                    location.url('/usuario/edit');
+
                 }, function (response) {
                     console.log(response);
                 });

@@ -36,7 +36,7 @@ moduleTipousuario.controller('tipousuarioEditController', ['$scope', '$http', '$
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
                     $scope.edited = true;
-                location.url('/tipousuario/edit');
+
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;

@@ -36,7 +36,7 @@ moduleUsuario.controller('usuarioNewController', ['$scope', '$http', 'toolServic
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
                     $scope.creado=true;
-                    location.url('/tipousuario/new');
+
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;

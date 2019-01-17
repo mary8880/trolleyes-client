@@ -10,12 +10,15 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
             desc: null
         }
         $scope.createForm = function () {
-            if ($scope.userForm.$valid) {
+           
                 if ($scope.myFile == undefined) {
-                    $scope.foto = "Foto";
+                    $scope.foto ="Foto.jpg";
                 } else {
-                    $scope.foto = guid() + $scope.myFile.name;
-                }
+                    $scope.foto = guid() + $scope.myFile.name; 
+                    $scope.fileNameChanged();
+                } 
+               
+            
                 var json = {
                     id: $scope.id,
                     codigo: $scope.codigo,
@@ -25,7 +28,7 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
                     foto: $scope.foto,
                     id_tipoProducto: $scope.obj_tipoProducto.id
                 }
-                $scope.fileNameChanged();
+               
 
                 $http({
                     method: 'GET',
@@ -43,7 +46,7 @@ moduleProducto.controller('productoNewController', ['$scope', '$http', 'toolServ
                 });
 
 
-            }
+            
         };
         $scope.tipoProductoRefresh = function (f, consultar) {
             var form = f;

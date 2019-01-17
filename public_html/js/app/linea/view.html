@@ -18,19 +18,20 @@
                     </div>
                     <div class="d-flex col-4 btn-group" role="group" aria-label="Second group" >
                         <a href="/trolleyes-client/public_html/factura/{{ajaxData.obj_factura.id}}/linea/plist" class="btn btn-secondary btn-md " >Listado de lineas</a>
-                        <a href="/trolleyes-client/public_html/factura/linea/edit/{{ajaxData.id}}" class="btn btn-secondary btn-md" >Editar</a>
+                        <a href="/trolleyes-client/public_html/{{ob}}/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
                     </div>
                 </div>
                
 
                 <div class="table-responsive mt-5 mb-5 " >
+                    
                     <table class="table table-striped table-sm mx-auto" style="width: 800px; text-align: center; ">
                         <tr class="text-center">
                             <th>ID</th>
                             <td>{{ajaxData.id}}</td>
                         </tr>
                         <tr>
-                            <th>Descripción</th>
+                            <th>Cantidad</th>
                             <td >{{ajaxData.cantidad}}</td>
                         </tr>
                         <tr>

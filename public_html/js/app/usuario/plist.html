@@ -163,7 +163,8 @@
                                     <a href="/trolleyes-client/public_html/usuario/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
                                     
                                 </div>
-                                <a href="/trolleyes-client/public_html/factura/plistXusuario/{{fila.id}}" class="btn btn-warning mt-2" role="button" value="{{fila.numFacturas}}" ng-disabled="(fila.numFacturas<=0)">  Ver Facturas  <span class="badge badge-secondary">{{fila.numFacturas}}</span></a>
+                                <a href="/trolleyes-client/public_html/factura/plistXusuario/{{fila.id}}" class="btn btn-warning mt-2" role="button" value="{{fila.numFacturas}}" ng-show="fila.numFacturas">  Ver Facturas  <span class="badge badge-secondary">{{fila.numFacturas}}</span></a>
+                                <a href="/trolleyes-client/public_html/factura/new/{{fila.id}}" class="btn btn-warning mt-2" role="button" value="{{fila.numFacturas}}" ng-show="!fila.numFacturas">  Crear Facturas  <span class="badge badge-secondary">{{fila.numFacturas}}</span></a>
                             </td>
                         </tr>
                     </table>

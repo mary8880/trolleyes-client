@@ -25,7 +25,7 @@ moduleTipoproducto.controller('tipoproductoNewController', ['$scope', '$http', '
                     $scope.status = response.status;
                     $scope.ajaxData = response.data.message;
                     $scope.creado=true;
-                    location.url('/new');
+
                 }, function (response) {
                     $scope.ajaxData = response.data.message || 'Request failed';
                     $scope.status = response.status;
