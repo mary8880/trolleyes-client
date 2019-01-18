@@ -1,6 +1,6 @@
 trolleyes.config(['$routeProvider', function ($routeProvider) {
         
-        $routeProvider.when('/', {templateUrl: 'js/app/common/home.html', controller: 'homeController'});
+        $routeProvider.when('/home', {templateUrl: 'js/app/common/home.html', controller: 'homeController'});
         $routeProvider.when('/login', {templateUrl: 'js/app/common/login.html', controller: 'loginController'});
         //-----------------------------usuario--------------------------------------------
         $routeProvider.when('/usuario/plist/:rpp?/:page?/:order?', {templateUrl:'js/app/usuario/plist.html', controller: 'usuarioPlistController'});
@@ -47,5 +47,5 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
        $routeProvider.when('/carrito/show', {templateUrl: 'js/app/carrito/show.html', controller: 'productoShowController'}); 
        $routeProvider.when('/carrito/buy', {templateUrl: 'js/app/carrito/buy.html', controller: 'productoBuyController'});
         //----------------------------------------------------------------------------------
-        $routeProvider.otherwise({redirectTo: '/'});
+        $routeProvider.otherwise({redirectTo: '/home'});
     }]);
