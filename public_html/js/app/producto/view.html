@@ -4,13 +4,13 @@
     <div class="col-lg-12 px-4 mt-5 mb-3"> 
         <div class="d-flex mt-5">
             <div class="col-lg-11 mt-5">
-                <h1 class="h2 mt-5" >Productos</h1>
-                <p>Edita producto</p>
+                <h1 class="h2 mt-5" ><i class="fa fa-cube" aria-hidden="true"></i> Productos</h1>
+                <p>Ver producto</p>
             </div>
             <div class="col mt-5 mt-5">
                 <div class="btn-group mt-5" role="group" aria-label="Second group"  >
-                    <a href="/trolleyes-client/public_html/producto/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
-                    <a href="/trolleyes-client/public_html/producto/plist" class="btn btn-secondary btn-md" >Listado</a>
+                    <a class="btn btn-warning ml-3" href="/trolleyes-client/public_html/producto/new">Nuevo</a>
+                    <a class="btn btn-secondary" href="/trolleyes-client/public_html/producto/plist" role="button"> Listado </a>
                 </div>
             </div>
         </div>
@@ -23,19 +23,18 @@
                 <img id="output" ng-src="http://localhost:8081/imagenes/{{ajaxData.foto}}" style="width: 200px; height: 200px;">
             </div>
         </div>
-
-        <div class="col align-items-bottom text-bottom ml-3" >
-            <div class="btn-group mr-2 mb-5" role="group" aria-label="Basic example">
-                <a href="/trolleyes-client/public_html/{{ob}}/edit/{{id}}" class="btn btn-secondary" role="button">Editar</a>
-                <a href="/trolleyes-client/public_html/{{ob}}/delete/{{id}}" class="btn btn-secondary" role="button">Eliminar</a>
-            </div>
-        </div>
     </div>
     <div class="row">  
 
         <div class="col-lg-8 mt-2 mb-5 ml-3" >
-            <!-- FORM ============ -->
 
+            <!-- FORM ============ -->
+            <div class="d-flex justify-content-end ml-3" >
+                <div class="btn-group mr-2 mb-5" role="group" aria-label="Basic example">
+                    <a href="/trolleyes-client/public_html/{{ob}}/edit/{{id}}" class="btn btn-secondary" role="button">Editar</a>
+                    <a href="/trolleyes-client/public_html/{{ob}}/delete/{{id}}" class="btn btn-secondary" role="button">Eliminar</a>
+                </div>
+            </div>
             <form name="userForm" ng-show="!edited">
 
                 <!-- ID-->

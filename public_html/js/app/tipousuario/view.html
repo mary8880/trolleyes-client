@@ -6,13 +6,13 @@
     <div class="col-lg-12 px-4 mt-5 mb-3"> 
         <div class="d-flex mt-5">
             <div class="col-lg-11 mt-5">
-                <h1 class="h2 ml-3 mb-3" >Tipo de Usuarios</h1>
+                <h1 class="h2 ml-3 mb-3 mt-5" ><i class="fa fa-users" aria-hidden="true"></i> Tipo de Usuarios</h1>
                 <p  class=" ml-3 mb-3">Ver tipo de usuario</p>
             </div>
             <div class="col mt-5">
-                <div class="btn-group" role="group" aria-label="Second group"  >
-                    <a href="/trolleyes-client/public_html/tipousuario/view/{{id}}" class="btn btn-secondary btn-md" >Ver</a>
-                    <a href="/trolleyes-client/public_html/tipousuario/plist" class="btn btn-secondary btn-md" >Listado</a>
+                <div class="btn-group mt-5" role="group" aria-label="Second group"  >
+                    <a class="btn btn-warning ml-3" href="/trolleyes-client/public_html/tipousuario/new">Nuevo</a>
+                    <a class="btn btn-secondary" href="/trolleyes-client/public_html/tipousuario/plist" role="button"> Listado </a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a href="/trolleyes-client/public_html/tipousuario/delete/{{ajaxData.id}}" class="btn btn-secondary" role="button">Eliminar</a>
-                        
+
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label="Second group"> 
                         <a href="/trolleyes-client/public_html/tipousuario/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>

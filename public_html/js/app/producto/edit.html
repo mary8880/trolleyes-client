@@ -4,7 +4,7 @@
     <div class="col-lg-12 px-4 mt-5 mb-3"> 
         <div class="d-flex mt-5">
             <div class="col-lg-11 mt-5">
-                <h1 class="h2 mt-5" >Productos</h1>
+                <h1 class="h2 mt-5" ><i class="fa fa-cube" aria-hidden="true"></i> Productos</h1>
                 <p>Edita producto</p>
             </div>
             <div class="col mt-5 mt-5">
@@ -14,13 +14,45 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
+    <!--    <div class="col-sm-8 d-flex justify-content-end"  ng-show="!edited">
+            <div class="row row ml-3 mb-5" >
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>
+    
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group"> 
+                        <button type="button" ng-click="updateForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Enviar</button> 
+                    </div>
+                </div>
+            </div>
+        </div>-->
     <div class="row">  
 
-        <div class="col-sm-6 mt-5 mb-5 ml-3" >
+        <div class="col-lg-6 mt-5 mb-3 ml-3" >
             <!-- FORM ============ -->
 
             <form name="userForm" ng-show="!edited">
+
+
+                <!--IMAGEN-->
+
+                <div class="form-group">
+                    <label>Imagen del producto</label>
+                    <div class="row">
+                        <div class="mx-auto pb-5"> 
+                            <img id="output" ng-src="http://localhost:8081/imagenes/{{foto}}" style="width: 128px; height: 128px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mx-auto pb-5">
+                            <!--ARREGLO EN UNA LINEA DE PREVIEW DE NUEVA FOTO-->
+                            <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ID-->
                 <div class="form-group" >
                     <label>Id</label>
@@ -50,22 +82,6 @@
                     <label>Precio</label>
                     <input type="text" name="precio"  class="form-control" ng-model="precio" ng-required="true">
                     <p ng-show="userForm.precio.$invalid" class="text-danger">El precio es necesario</p>
-                </div>
-                <!--IMAGEN-->
-               
-                <div class="form-group">
-                    <label>Imagen del producto</label>
-                    <div class="row">
-                        <div class="mx-auto pb-5"> 
-                            <img id="output" ng-src="http://localhost:8081/imagenes/{{foto}}" style="width: 128px; height: 128px;">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mx-auto pb-5">
-                            <!--ARREGLO EN UNA LINEA DE PREVIEW DE NUEVA FOTO-->
-                            <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
-                        </div>
-                    </div>
                 </div>
 
                 <!--TIPOPRODUCTO-->
@@ -112,8 +128,8 @@
                 </div>
             </form>        
         </div>
-        <div class="col  mt-5"  ng-show="!edited">
-            <div class="row row ml-5" >
+        <div class="col mb-5"  ng-show="!edited">
+            <div class="row row ml-3 mb-5" >
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <button  class="btn btn-secondary" ng-click="resetForm()" >Reset</button>

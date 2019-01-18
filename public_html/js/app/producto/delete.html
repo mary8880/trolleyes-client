@@ -1,81 +1,87 @@
 <header-component></header-component>
-<div class="container-fluid">
-    <div class="row">
-        <main role="main" class="col-lg-12 px-4 mt-5 mb-3" >
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
-                <h1 class="h2 ml-3 mb-3">Productos</h1>
-                <div class="btn-toolbar mb-2 mb-md-0" >
-                    <a class="btn btn-warning  ml-3 " href="/trolleyes-client/public_html/producto/new">Nuevo</a>
-                    <a href="/trolleyes-client/public_html/producto/plist" class="btn btn-secondary" role="button"> Listado </a>
-                </div>
-                <div class="table-responsive mt-5 mb-5 "ng-show="!borrado">
-                    <table class="table table-striped table-sm">
-                        <tr>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Id</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Codigo</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Descripción</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Existencias</div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Precio</div>
-                                </div>
-                            </th>
-                       
-                            <th>
-                                <div class="d-flex align-self-center align-items-center">
-                                    <div class=" p-2 align-self-center">Tipo de usuario</div>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">{{ajaxData.id}}</td>
-                            <td class="text-center">{{ajaxData.codigo}}</td>
-                            <td class="text-center">{{ajaxData.desc}}</td>
-                            <td class="text-center">{{ajaxData.existencias}}</td>
-                            <td class="text-center">{{ajaxData.precio}}</td>
-                            <td class="text-center">{{ajaxData.id_tipoProducto}}</td>
-                            <td class="text-center">
-                            <td>
-                                <div class="btn-group mr-2" role="group" aria-label="Basic example">
-                                    <a href="/trolleyes-client/public_html/producto/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
-                                    <a href="/trolleyes-client/public_html/producto/view/{{ajaxData.id}}" class="btn btn-secondary" role="button">Ver</a>
-                                </div>
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-                <div class="d-flex mt-3 mb-3" ng-show="!borrado">
-                    <h1>¿Desea eliminar este producto?</h1>
-                    <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <button class="btn btn-warning btn-lg" ng-click="delete()">si</button>
-                        <a class="btn btn-secondary btn-lg" href="/trolleyes-client/public_html/producto/view/{{id}}">no</a>
-                    </div>
-                </div>
-                <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-2" ng-show="borrado">
-                    <h1>Ha elimidado el producto {{desc}}</h1>
-                    <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <a class="btn btn-warning" href="/trolleyes-client/public_html/producto/plist"> Volver al Listado</a>
-                    </div>
-                </div>                               
-            </div>
-        </main>
+<main role="main" class="container" >
+    <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3">
+        <h1 class="h2 ml-3 mt-5 mb-3"><i class="fa fa-cube" aria-hidden="true"></i> Productos</h1>
+        <div class="btn-toolbar mb-2 mb-md-0 mt-5" >
+            <a class="btn btn-warning  ml-3 " href="/trolleyes-client/public_html/producto/new">Nuevo</a>
+            <a href="/trolleyes-client/public_html/producto/plist" class="btn btn-secondary" role="button"> Listado </a>
+        </div>
     </div>
-</div>
+    <!--            align-items-center   centra en vertical-->
+    <div class="d-flex justify-content-between flex-wrap pt-3 pb-2  mt-5 mb-3 border-bottom">
+
+        <div class="col-lg-6 col-md-12 mb-5 ">
+
+            <div class="d-flex mt-3 mb-3" ng-show="!borrado">
+                <h1>¿Desea eliminar este producto?</h1>
+                <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
+                    <button class="btn btn-warning btn-lg" ng-click="delete()">si</button>
+                    <a class="btn btn-secondary btn-lg" href="/trolleyes-client/public_html/producto/view/{{id}}">no</a>
+                </div>
+            </div>
+            <div class="px-4  mt-5 mb-5 ml-2" ng-show="borrado">
+                <h1>Ha elimidado el producto {{desc}}</h1>
+                <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
+                    <a class="btn btn-warning" href="/trolleyes-client/public_html/producto/plist"> Volver al Listado</a>
+                </div>
+            </div>                              
+        </div>
+
+        <div class="col-lg-6 col-md-12 mt-5 mb-5" ng-show="!borrado">
+
+            <!-- FORM ============ -->
+            <form name="userForm" ng-show="!edited">
+                <!--IMAGEN-->
+                <div class="mx-auto pb-5"> 
+                    <img id="output" ng-src="http://localhost:8081/imagenes/{{ajaxData.foto}}" style="width: 200px; height: 200px;">
+                </div>
+                <div class="d-flex justify-content-end" >
+                    <div class="btn-group mr-2 mb-5" role="group" aria-label="Basic example">
+                        <a href="/trolleyes-client/public_html/{{ob}}/edit/{{id}}" class="btn btn-secondary" role="button">Editar</a>
+                        <a href="/trolleyes-client/public_html/{{ob}}/view/{{id}}" class="btn btn-secondary" role="button">Ver</a>
+                    </div>
+                </div>
+                <!-- ID-->
+                <div class="form-group" >
+                    <label>Id</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+                <!-- CÓDIGO-->
+                <div class="form-group">
+                    <label>Código</label>
+                    <input type="text" class="form-control"  id="codigo"  readonly="readonly" name="codigo" ng-model="ajaxData.codigo">
+
+                </div>
+                <!-- DESCRIPCIÓN -->
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" name="desc" class="form-control" readonly="readonly"  ng-model="ajaxData.desc">
+
+                </div>
+
+                <!--EXIXTENCIAS -->
+                <div class="form-group">
+                    <label>Existencias</label>
+                    <input type="text" name="existencias"  class="form-control"  readonly="readonly" ng-model="ajaxData.existencias" >
+                </div>
+                <!--PRECIO-->
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="text" name="precio"  class="form-control"  readonly="readonly" ng-model="ajaxData.precio" >
+                </div>
+
+                <!--TIPOPRODUCTO-->
+
+                <div class="form-group">
+                    <label>Tipo de producto</label>
+                    <input type="text" name="precio"  class="form-control"  readonly="readonly" ng-model="ajaxData.obj_tipoProducto.desc" >
+                </div>
+
+
+            </form>        
+        </div>
+
+    </div>
+
+</main>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>   

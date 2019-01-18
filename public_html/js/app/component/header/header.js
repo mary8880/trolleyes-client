@@ -14,6 +14,7 @@ function js(sessionService,$http){
             this.userlogeado = sessionService.getUserName();
             this.logeado = true;
             this.userlogeadoid=sessionService.getUserId();
+            
         }
 
         this.logout = function () {
@@ -23,7 +24,7 @@ function js(sessionService,$http){
             }).then(function (response) {
                 this.logeado = false;
                 this.userlogeado = "";
-                this.url('/');
+                this.url('/home');
                 this.log(response);
             });
 

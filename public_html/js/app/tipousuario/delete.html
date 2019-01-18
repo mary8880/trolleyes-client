@@ -1,44 +1,48 @@
 <header-component></header-component>
-<div class="container-fluid">
-    <div class="row">
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-4  mt-5 mb-3">
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
-                <h1 class="h2 ml-3 mb-3" > Tipo de Usuarios</h1>
-                <div class="btn-toolbar mb-2 mb-md-0" >
+        <main role="main" class=" container px-4  mt-5 mb-3">
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3">
+                <h1 class="h2 ml-3 mb-3 mt-5" ><i class="fa fa-users" aria-hidden="true"></i>  Tipo de Usuarios</h1>
+                <div class="btn-toolbar mb-2 mb-md-0 mt-5" >
                     <a class="btn btn-warning ml-3 " href="/trolleyes-client/public_html/tipousuario/new">Nuevo</a>
                     <a href="/trolleyes-client/public_html/tipousuario/plist" class="btn btn-secondary" role="button"> Listado </a>
                 </div>
-                <div class="table-responsive mt-5 mb-5 "  ng-show="!borrado">
-                    <table class="table table-striped table-sm">
-                        <tr>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Id</div>
-                                </div>
-                            </th>
+             </div>
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
+                <div class="row" ng-show="!borrado">  
 
-                            <th>
-                                <div class="d-flex ">
-                                    <div class=" p-2 align-self-center">Descripcion</div>
-                            </th>
-                            <th><div class="d-flex align-self-center align-items-center">
-                                    <div class=" p-2 align-self-center">Operaciones</div>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="text-center">{{ajaxData.id}}</td>
-                            <td class="text-center">{{ajaxData.desc}}</td>
-                            <td>
-                                <div class="btn-group mr-2" role="group" aria-label="Basic example">
+                    <div class="col-sm-6 mt-5 mb-5 ml-3" >
+                        <!-- FORM ============ -->
+
+                        <form name="userForm" ng-show="!edited" >
+                            <!-- ID-->
+                            <div class="form-group">
+                                <label>Id</label>
+                                <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="ajaxData.id">
+                            </div>
+
+                            <!-- NOMBRE -->
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.desc.$invalid}">
+                                <label>Descripción</label>
+                                <input type="text" name="desc" readonly="readonly" class="form-control" ng-model="ajaxData.desc" >
+                            </div>  
+                        </form>        
+                    </div>
+                    <div class="col mt-5 " ng-show="!edited" >
+                        <div class="row ml-5" >
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
                                     <a href="/trolleyes-client/public_html/tipousuario/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
+
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group"> 
                                     <a href="/trolleyes-client/public_html/tipousuario/view/{{ajaxData.id}}" class="btn btn-secondary" role="button">Ver</a>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex mt-3 mb-3" ng-show="!borrado">
+
+                <div class="d-flex mt-3 mb-5" ng-show="!borrado">
                     <h1>¿Desea eliminar este tipousuario?</h1>
                     <div class="d-flex align-self-center align-items-center mt-3 mb-5 ml-2">
                         <button class="btn btn-warning btn-lg" ng-click="delete()">si</button>
@@ -53,6 +57,4 @@
                 </div>
             </div>
         </main>
-    </div>
-</div>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

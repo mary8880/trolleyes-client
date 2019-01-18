@@ -42,8 +42,8 @@
                     <a  href="/trolleyes-client/public_html/usuario/view/{{userlogeadoid}}" class="btn btn-warning mt-2"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
                 </div>
             </div>
-            <div>
-                <a  href="/trolleyes-client/public_html/carrito/show" class="btn btn-warning mr-3 ml-3 mt-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            <div ng-show="logeado">
+                <a  href="/trolleyes-client/public_html/carrito/show" class="btn btn-warning mr-3 ml-3 mt-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="badge badge-light">{{numprodcarrito}}</span></a>
             </div>
         </div>
         <!-------------------------------------------------->

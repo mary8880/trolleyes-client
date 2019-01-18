@@ -1,88 +1,99 @@
 <header-component></header-component>
-<div class="container-fluid">
-    <div class="row">
-        <main role="main" class="col-lg-12 px-4 mt-5 mb-3" >
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
-                <h1 class="h2 ml-3 mb-3">Usuarios</h1>
-                <div class="btn-toolbar mb-2 mb-md-0" >
+
+<main role="main" class="container" >
+    <div class="col-lg-12 px-4 mt-5 mb-3"> 
+        <div class="d-flex mt-5">
+            <div class="col-lg-11 mt-5">
+                <h1 class="h2 mt-5" ><i class="fa fa-user" aria-hidden="true"></i> Usuarios</h1>
+                <p>Elimina usuario</p>
+            </div>
+            <div class="col mt-5">
+                <div class="btn-group  mt-5" role="group" aria-label="Second group"  >
                     <a class="btn btn-warning  ml-3 " href="/trolleyes-client/public_html/usuario/new">Nuevo</a>
                     <a href="/trolleyes-client/public_html/usuario/plist" class="btn btn-secondary" role="button"> Listado </a>
                 </div>
-                <div class="table-responsive mt-5 mb-5 "ng-show="!borrado">
-                    <table class="table table-striped table-sm">
-                        <tr>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Id</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">DNI</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Nombre</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Primer apellido</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Segundo apellido</div>
-                            </th>
-                            <th>
-                                <div class="d-flex">
-                                    <div class=" p-2 align-self-center">Nombre de usuario</div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="d-flex ">
-                                    <div class=" p-2 align-self-center">Tipo de usuario</div>
-                            </th>
-                            <th><div class="d-flex align-self-center align-items-center">
-                                    <div class=" p-2 align-self-center">Tipo de usuario</div>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <td class="text-center">{{ajaxData.id}}</td>
-                            <td class="text-center">{{ajaxData.dni}}</td>
-                            <td class="text-center">{{ajaxData.nombre}}</td>
-                            <td class="text-center">{{ajaxData.ape1}}</td>
-                            <td class="text-center">{{ajaxData.ape2}}</td>
-                            <td class="text-center">{{ajaxData.login}}</td>
-                            <td class="text-center">{{ajaxData.obj_tipoUsuario.desc}}</td>
-                            <td>
-                                <div class="btn-group mr-2" role="group" aria-label="Basic example">
-                                    <a href="/trolleyes-client/public_html/usuario/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
-                                    <a href="/trolleyes-client/public_html/usuario/view/{{ajaxData.id}}" class="btn btn-secondary" role="button">Ver</a>
-                                </div>
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-                <div class="d-flex mt-3 mb-3" ng-show="!borrado">
-                    <h1>¿Desea eliminar este usuario?</h1>
-                    <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <button class="btn btn-warning btn-lg" ng-click="delete()">si</button>
-                        <a class="btn btn-secondary btn-lg" href="/trolleyes-client/public_html/usuario/view/{{id}}">no</a>
-                    </div>
-                </div>
-                <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-2" ng-show="borrado">
-                    <h1>Ha elimidado al usuario</h1>
-                    <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <a class="btn btn-warning" href="/trolleyes-client/public_html/usuario/plist"> Volver al Listado</a>
-                    </div>
-                </div>                               
             </div>
-        </main>
+        </div>
+    </div> 
+
+    <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom" >
+        <div class="col-6  mt-5" ng-show="!borrado">
+            <div class="row row ml-5 mt-5" >
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a href="/trolleyes-client/public_html/usuario/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Second group"> 
+                        <a href="/trolleyes-client/public_html/usuario/view/{{ajaxData.id}}" class="btn btn-secondary" role="button">Ver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex mt-3 mb-3 col" ng-show="!borrado">
+            <h1>¿Desea eliminar este usuario?</h1>
+            <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
+                <button class="btn btn-warning btn-lg" ng-click="delete()">si</button>
+                <a class="btn btn-secondary btn-lg" href="/trolleyes-client/public_html/usuario/view/{{id}}">no</a>
+            </div>
+        </div>
+        <div class="col-6 mt-5 mb-5 ml-3 " >
+            <!-- FORM ============ -->
+
+            <form name="userForm" ng-show="!borrado">
+                <!-- ID-->
+                <div class="form-group">
+                    <label>Id</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+                <!-- DNI-->
+                <div class="form-group">
+                    <label>DNI</label>
+                    <input type="text" class="form-control"  id="dni" name="dni" ng-model="ajaxData.dni" readonly="readonly" >
+
+                </div>
+                <!-- NOMBRE -->
+                <div class="form-group" >
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" class="form-control" ng-model="ajaxData.nombre" readonly="readonly" > 
+                </div>
+
+                <!-- APE1 -->
+                <div class="form-group">
+                    <label>Primer Apellido</label>
+                    <input type="text" name="ape1"  class="form-control" ng-model="ajaxData.ape1" readonly="readonly">
+                </div>
+                <!-- APE2 -->
+                <div class="form-group">
+                    <label>Segundo Apellido</label>
+                    <input type="text" name="ape2"  class="form-control" ng-model="ajaxData.ape2" readonly="readonly">
+                    <p ng-show="userForm.ape2.$invalid" class="text-danger">Segundo apellido es necesario</p>
+                </div>
+
+                <!-- USUARIO -->
+                <div class="form-group">
+                    <label>Nombre de usuario</label>
+                    <input type="text" name="login" class="form-control" ng-model="ajaxData.login" readonly="readonly">
+
+                </div>
+
+                <!-- TIPOUSUARIO -->
+                <div class="form-group">
+                    <label>Tipo de usuario</label>
+                    <input type="text" name="tipousuario"  class="form-control" ng-model="ajaxData.obj_tipoUsuario.desc" readonly="readonly">
+
+                </div>
+
+            </form>        
+        </div>
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4  mt-5 mb-5 ml-2" ng-show="borrado">
+            <h1>Ha elimidado al usuario</h1>
+            <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
+                <a class="btn btn-warning" href="/trolleyes-client/public_html/usuario/plist"> Volver al Listado</a>
+            </div>
+        </div>                               
     </div>
-</div>
+</main>
+
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>   

@@ -22,6 +22,7 @@ moduleFactura.controller('facturaViewController', ['$scope', '$http', '$location
             $scope.id = response.data.message.id;
             $scope.myDate = new Date(response.data.message.fecha);
             $scope.iva = response.data.message.iva;
+            $scope.fecha=response.data.message.fecha;
             $scope.obj_usuario = {
                 id: response.data.message.obj_usuario.id,
                 nombre: response.data.message.obj_usuario.nombre,

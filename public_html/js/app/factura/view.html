@@ -1,128 +1,83 @@
 <header-component></header-component>
-<div class="container-fluid">
-    <div class="row">
-        <main role="main" class="col-12 px-4 mt-5 mb-3">
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2  mt-5 mb-3 ">
-                <div class=" ml-3">
-                <h1 class="h2" ><i class="fa fa-paste img-responsive" aria-hidden="true"></i> Factura</h1>
-                <p>Crea nueva factura</p>
-            </div>
-                <div class="btn-toolbar mb-2 mb-md-0" >
-                    <a class="btn btn-warning ml-3" href="/trolleyes-client/public_html/factura/new">Nuevo</a>
-                    <a href="/trolleyes-client/public_html/factura/plist" class="btn btn-secondary" role="button"> Listado </a>
-                </div>
-            </div>
-<!--            align-items-center   centra en vertical-->
-            <div class="d-flex justify-content-between flex-wrap pt-3 pb-2  mt-5 mb-3 border-bottom">
-                <div class="col-lg-6 col-md-12 mt-5">
-                    <form name="userForm">
-                        <!-- ID-->
-                        <div class="form-group">
-                            <label>Id de Factura</label>
-                            <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
-                        </div>
-                        <!-- FECHA -->
-                        <div class="form-group" ng-class="{ 'has-error' : userForm.fecha.$invalid && !userForm.fecha.$pristine}">
-                            <label>Fecha</label>
-                            <input type="text" name="myDate" readonly="readonly" class="form-control" ng-model="myDate">
-                        </div>
-                        <!-- IVA -->
-                        <div class="form-group">
-                            <label>IVA</label>
-                            <input type="text" name="iva" readonly="readonly" class="form-control" ng-model="iva"><p>%</p>
-
-                        </div>
-                        <!-- ID USUARIO -->
-
-                        <div class="form-group">
-                            <label>Usuario:</label>
-                            <input type="text" name="obj_usuario.id" readonly="readonly" class="form-control" ng-model="obj_usuario.id">
-                        </div>
-                    </form>   
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-5 ">
-                    <div class="btn-group mr-2 mb-5" role="group" aria-label="Basic example">
-                        <a href="/trolleyes-client/public_html/{{ob}}/edit/{{id}}" class="btn btn-secondary" role="button">Editar</a>
-                        <a href="/trolleyes-client/public_html/{{ob}}/delete/{{id}}" class="btn btn-secondary" role="button">Eliminar</a>
-                    </div>
-                    <h1 class="h4 h4 mb-3" >Lineas</h1>
-                    <button class="btn btn-warning " ng-click="mostrarlineas()" ng-show="!mostrarlinea"><i class="fa fa-plus-square  ml-2" aria-hidden="true"></i> Mostrar</button>
-                    <button class="btn btn-secondary " ng-click="ocultarlineas()" ng-show="mostrarlinea"><i class="fa fa-minus-square ml-2" aria-hidden="true"></i> Ocultar</button>
-                    <div class="table-responsive mb-5 " ng-show="mostrarlinea">
-                        <table class="table table-striped table-sm mt-5 align-self-center mb-5" >
-                            <tr>
-                                <th>
-                                    <div class="d-flex">
-                                        <div class=" p-2 mb-md-0">Id</div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="d-flex">
-                                        <div class=" p-2 align-self-center">Producto</div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="d-flex">
-                                        <div class=" p-2 align-self-center">Cantidad</div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr ng-repeat="fila in ajaxDataUsuarios">
-                                <td class="text-center font-weight-bold">{{fila.id}}</td>
-                                <td class="text-center">{{fila.obj_producto.desc}}</td>
-                                <td class="text-center">{{fila.cantidad}}</td>
-                            </tr>
-                        </table>
-                        <a href="/trolleyes-client/public_html/{{ob}}/{{id}}/linea/plist" class="btn btn-secondary" role="button">Ver lineas y editarlas</a>
-                    </div>
-
-
-                    <!--                    <table class="table table-striped table-sm">
-                                            <tr >
-                                                <th class="text-center">
-                                                    <div class="d-flex">
-                                                        <div class=" p-2 align-self-center">Id</div>
-                                                    </div>
-                                                </th>
-                                                <th class="text-center">
-                                                    <div class="d-flex">
-                                                        <div class=" p-2 align-self-center">Fecha</div>
-                                                    </div>
-                                                </th>
-                                                <th class="text-center">
-                                                    <div class="d-flex">
-                                                        <div class=" p-2 align-self-center">IVA</div>
-                                                    </div>
-                                                </th>                     
-                                                <th class="text-center">
-                                                    <div class="d-flex ">
-                                                        <div class=" p-2 align-self-center">Id del usuario</div>
-                                                    </div>
-                                                </th>
-                                                <th class="text-center">
-                                                    <div class="d-flex align-self-center align-items-center">
-                                                        <div class="text-center p-2 align-self-center">Operaciones</div>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">{{ajaxData.id}}</td>
-                                                <td class="text-center">{{ajaxData.fecha}}</td>
-                                                <td class="text-center">{{ajaxData.iva}}</td>
-                                                <td class="text-center">{{ajaxData.id_usuario}}</td>
-                                                <td>
-                                                    <div class="btn-group mr-2" role="group" aria-label="Basic example">
-                                                        <a href="/trolleyes-client/public_html/factura/edit/{{ajaxData.id}}" class="btn btn-secondary" role="button">Editar</a>
-                                                        <a href="/trolleyes-client/public_html/factura/delete/{{ajaxData.id}}" class="btn btn-secondary" role="button">Eliminar</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>-->
-
-                </div>
-
-        </main>
+<main role="main" class="container">
+    <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2  mt-5 mb-3 ">
+        <div class=" ml-3 mt-5">
+            <h1 class="h2 mt-5" ><i class="fa fa-paste img-responsive" aria-hidden="true"></i> Factura</h1>
+            <p>Ver factura</p>
+        </div>
+        <div class="btn-group mb-2 mb-md-0 mt-5" >
+            <a class="btn btn-warning ml-3" href="/trolleyes-client/public_html/factura/new">Nuevo</a>
+            <a href="/trolleyes-client/public_html/factura/plist" class="btn btn-secondary" role="button"> Listado </a>
+        </div>
     </div>
-</div>
+    <!--            align-items-center   centra en vertical-->
+    <div class="d-flex justify-content-between flex-wrap pt-3 pb-2  mt-5 mb-3 border-bottom">
+        <div class="col-lg-6 col-md-12 mt-5">
+            <form name="userForm">
+                <!-- ID-->
+                <div class="form-group">
+                    <label>Id de Factura</label>
+                    <input type="text" name="id"  readonly="readonly" class="form-control" ng-model="id">
+                </div>
+                <!-- FECHA -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.fecha.$invalid && !userForm.fecha.$pristine}">
+                    <label>Fecha</label>
+                    <input type="text" name="myDate" readonly="readonly" class="form-control" ng-model="fecha">
+                </div>
+                <!-- IVA -->
+                <div class="form-group">
+                    <label>IVA</label>
+                    <input type="text" name="iva" readonly="readonly" class="form-control" ng-model="iva"><p>%</p>
+
+                </div>
+                <!-- ID USUARIO -->
+
+                <div class="form-group">
+                    <label>Usuario:</label>
+                    <input type="text" name="obj_usuario.id" readonly="readonly" class="form-control" ng-model="obj_usuario.id">
+                </div>
+            </form>   
+        </div>
+
+        <div class="col-lg-6 col-md-12 mb-5 ">
+            <div class="btn-group mr-2 mb-5" role="group" aria-label="Basic example">
+                <a href="/trolleyes-client/public_html/{{ob}}/edit/{{id}}" class="btn btn-secondary" role="button">Editar</a>
+                <a href="/trolleyes-client/public_html/{{ob}}/delete/{{id}}" class="btn btn-secondary" role="button">Eliminar</a>
+            </div>
+            <h1 class="h4 h4 mb-3" >Lineas</h1>
+            <button class="btn btn-warning " ng-click="mostrarlineas()" ng-show="!mostrarlinea"><i class="fa fa-plus-square  ml-2" aria-hidden="true"></i> Mostrar</button>
+            <button class="btn btn-secondary " ng-click="ocultarlineas()" ng-show="mostrarlinea"><i class="fa fa-minus-square ml-2" aria-hidden="true"></i> Ocultar</button>
+            <div class="table-responsive mb-5 " ng-show="mostrarlinea">
+                <table class="table table-striped table-sm mt-5 align-self-center mb-5" >
+                    <tr>
+                        <th>
+                            <div class="d-flex">
+                                <div class=" p-2 mb-md-0">Id</div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex">
+                                <div class=" p-2 align-self-center">Producto</div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex">
+                                <div class=" p-2 align-self-center">Cantidad</div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="fila in ajaxDataUsuarios">
+                        <td class="text-center font-weight-bold">{{fila.id}}</td>
+                        <td class="text-center">{{fila.obj_producto.desc}}</td>
+                        <td class="text-center">{{fila.cantidad}}</td>
+                    </tr>
+                </table>
+                <a href="/trolleyes-client/public_html/{{ob}}/{{id}}/linea/plist" class="btn btn-secondary" role="button">Ver lineas y editarlas</a>
+            </div>
+
+        </div>
+    </div>
+
+
+</main>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>
