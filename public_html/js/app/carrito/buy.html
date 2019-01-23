@@ -4,7 +4,7 @@
         <main role="main" class="col-lg-12 px-4 mt-5 mb-3">
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
                 <h1 class="h2  ml-3 mb-3" >Carrito</h1>
-                <div class="col-lg-12 ">
+                <div class="col-lg-12 " ng-show="!comprado">
                     <h1>¿Desea comprar los productos del carrito?</h1>
                     <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
                         <button class="btn btn-warning btn-lg" ng-click="buy()">si</button>
@@ -12,33 +12,26 @@
                     </div>
 
                 </div>
+                <div class="col-lg-12 " ng-show="comprado">
+                    <h1>Ha comprado los siguientes productos</h1>
+                    <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
+                        <a class="btn btn-warning btn-lg ml-3" ng-click="empty()" href="/trolleyes-client/public_html/producto/tienda">Volver a la tienda</a>
+                    </div>
+
+                </div>
+
             </div>
-<!--            <div class="row port-page ml-3">
-                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom"ng-repeat="fila in ajaxDataProductos">
+            <div class="col-12 port-page ml-3" ng-show="comprado">
+                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-6"ng-repeat="fila in ajaxData">
                     <img src="img/boximage0.jpg" class="img-responsive center-block port-image col-3 mt-2 mb-2" alt=""/>
                     <div class=" col-2ml-3 mt-2">
                         <h2 class="album__title">{{fila.obj_producto.desc}}</h2>
-                        <button type="button" class="btn btn-light">
-                            Existencias <span class="badge badge-secondary">{{fila.obj_producto.existencias}}</span>
-                        </button>
                     </div>
                     <div class="btn-group-col col2 ">
-                        <button type="button" class="btn btn-light" ng-click="add(fila.obj_producto.id)">
-                            Add cart <i class="fa fa-plus-square  ml-2" aria-hidden="true"></i>
-                        </button>
                         <span class="badge badge-secondary">{{fila.cantidad}}</span>
-                        <button type="button" class="btn btn-light" ng-click="reduce(fila.obj_producto.id)">
-                            <i class="fa fa-minus-square" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-light" ng-click="remove(fila.obj_producto.id)">
-                            <i class="fa fa-window-close" aria-hidden="true"></i>
-                        </button>
                     </div>
                 </div>
-            </div>-->
-
+            </div>
         </main>
     </div>   
 </div>

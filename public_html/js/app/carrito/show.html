@@ -5,16 +5,16 @@
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 border-bottom">
                 <h1 class="h2  ml-3 mb-3" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito</h1>
                 <div>
-                    <button type="button" class="btn btn-light btn-lg mr-5">
+                    <button type="button" class="btn btn-light btn-lg mr-5" ng-show="!carritoVacio">
                         <i class="fa fa-window-close" aria-hidden="true" ng-click="empty()"></i> 
                     </button>
-                    <a class="btn btn-warning btn-lg mr-5" href="/trolleyes-client/public_html/carrito/buy">
+                    <a class="btn btn-warning btn-lg mr-5" href="/trolleyes-client/public_html/carrito/buy" ng-show="!carritoVacio" >
                         <i class="fa fa-cart-arrow-down" aria-hidden="true" ></i> Buy
                     </a>
                 </div>
             </div>
             <div class="row port-page">
-                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-12"ng-repeat="fila in ajaxDataProductos">
+                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-12"ng-repeat="fila in ajaxDataProductos" ng-show="!carritoVacio" >
                     <img  src="http://localhost:8081/imagenes/{{fila.obj_producto.foto}}" class="img-responsive center-block port-image col-3 mt-2 mb-2 " alt="" />
                     <div class=" col-3 mt-2 ">
                         <h2 class="album__title text-left" style="font-size:3vw">{{fila.obj_producto.desc}}</h2>
