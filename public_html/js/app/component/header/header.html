@@ -6,22 +6,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto" ng-show="c.logeado">
-            <li class="nav-item" ng-class="{'active': c.isActive('/tipousuario/plist') || c.isActive('/tipousuario/view/') || c.isActive('/tipousuario/new/') || c.isActive('/tipousuario/edit/') || c.isActive('/tipousuario/delete/')}">
+            <li class="nav-item" ng-show="c.isAdmin" ng-class="{'active': c.isActive('/tipousuario/plist') || c.isActive('/tipousuario/view/') || c.isActive('/tipousuario/new/') || c.isActive('/tipousuario/edit/') || c.isActive('/tipousuario/delete/')}">
                 <a class="nav-link" href="tipousuario/plist"><i class="fa fa-users" aria-hidden="true"></i> Tipousuario</a>
             </li>
-            <li class="nav-item" ng-class="{'active': c.isActive('/usuario/plist') || c.isActive('/usuario/view/') || c.isActive('/usuario/new/') || c.isActive('/usuario/edit/') || c.isActive('/usuario/delete/')}">
+            <li class="nav-item" ng-show="c.isAdmin" ng-class="{'active': c.isActive('/usuario/plist') || c.isActive('/usuario/view/') || c.isActive('/usuario/new/') || c.isActive('/usuario/edit/') || c.isActive('/usuario/delete/')}">
                 <a class="nav-link" href="usuario/plist"><i class="fa fa-user" aria-hidden="true"></i> Usuario</a>
             </li>
-            <li class="nav-item" ng-class="{'active': c.isActive('/factura/plist') || c.isActive('/factura/plistXusuario/') || c.isActive('/factura/view/') || c.isActive('/factura/new/') || c.isActive('/factura/edit/') || c.isActive('/factura/delete/')}">
+            <li class="nav-item" ng-show="c.isAdmin" ng-class="{'active': c.isActive('/factura/plist') || c.isActive('/factura/plistXusuario/') || c.isActive('/factura/view/') || c.isActive('/factura/new/') || c.isActive('/factura/edit/') || c.isActive('/factura/delete/')}">
                 <a class="nav-link" href="factura/plist"><i class="fa fa-paste" aria-hidden="true"></i> Factura</a>
             </li>
-            <li class="nav-item" ng-class="{'active': c.isActive('/producto/plist') || c.isActive('/producto/view/') || c.isActive('/producto/new/') || c.isActive('/producto/edit/') || c.isActive('/producto/delete/')}">
+            <li class="nav-item" ng-show="c.isAdmin" ng-class="{'active': c.isActive('/producto/plist') || c.isActive('/producto/view/') || c.isActive('/producto/new/') || c.isActive('/producto/edit/') || c.isActive('/producto/delete/')}">
                 <a class="nav-link" href="producto/plist"><i class="fa fa-cube" aria-hidden="true"></i> Producto</a>
             </li>
-            <li class="nav-item" ng-class="{'active': c.isActive('/tipoproducto/plist') || c.isActive('/tipoproducto/view/') || c.isActive('/tipoproducto/new/') || c.isActive('/tipoproducto/edit/') || c.isActive('/tipoproducto/delete/')}">
+            <li class="nav-item" ng-show="c.isAdmin" ng-class="{'active': c.isActive('/tipoproducto/plist') || c.isActive('/tipoproducto/view/') || c.isActive('/tipoproducto/new/') || c.isActive('/tipoproducto/edit/') || c.isActive('/tipoproducto/delete/')}">
                 <a class="nav-link" href="tipoproducto/plist"><i class="fa fa-cubes" aria-hidden="true"></i> Tipoproducto</a>
             </li>
-            <li class="nav-item" ng-class="{'active': c.isActive('/producto/tienda')}">
+            <li class="nav-item" ng-show="!c.isAdmin" ng-class="{'active': c.isActive('/producto/tienda')}">
                 <a class="nav-link" href="producto/tienda"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Tienda</a>
             </li>
         </ul>
@@ -36,7 +36,7 @@
                     <span class="mr-3 text-light" >Hola! {{c.userlogeado}}</span>
                     <button type="button" ng-click="c.logout()"class="btn btn-secondary mt-2">Logout</button>
                     <a  href="/trolleyes-client/public_html/usuario/view/{{c.userlogeadoid}}" class="btn btn-warning mt-2"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
-                     <a  href="/trolleyes-client/public_html/carrito/show" class="btn btn-warning mr-3 ml-2 mt-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="badge ml-2">0</span></a>
+                     <a ng-show="!c.isAdmin"  href="/trolleyes-client/public_html/carrito/show" class="btn btn-warning mr-3 ml-2 mt-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="badge ml-2">{{carrito}}</span></a>
                 </div>
             </li>
 

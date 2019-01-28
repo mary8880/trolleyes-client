@@ -29,7 +29,22 @@
                 <button type="button" ng-click="loginForm()" class="btn btn-warning btn-lg" ng-disabled="userForm.$invalid">Login</button>
             </form>        
         </div>
+        <div class="col" ng-show="errorlogin">
+            <div class="jumbotron alert-warning">
+                
+                    <h1 class="text-center text-danger">Usuario y contraseña no válidos.</h1>
+                
+            </div>
+        </div>
+        <div class="col" ng-show="logeado">
+            <div class="jumbotron alert-warning">
+                
+                    <h1 class="text-center text-success">Te has logueado {{userlogeado}}!</h1>
+                
+            </div>
+        </div>
     </div>
+
 </main>
 
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

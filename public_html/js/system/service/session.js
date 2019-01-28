@@ -6,6 +6,7 @@ moduleService.service('sessionService', ['$location', function ($location) {
         var isSessionActive = false;
         var userName = "";
         var userId;
+        var admin;
         var productosCarrito = 0;
         var observerCallbacks = [];
         return {
@@ -14,6 +15,9 @@ moduleService.service('sessionService', ['$location', function ($location) {
             },
             setUserName: function (name) {
                 userName = name;
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
 
             },
             getUserId: function () {
@@ -22,6 +26,9 @@ moduleService.service('sessionService', ['$location', function ($location) {
             setUserId: function (id) {
 
                 userId = id;
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
 
             },
             isSessionActive: function () {
@@ -29,14 +36,23 @@ moduleService.service('sessionService', ['$location', function ($location) {
             },
             setSessionActive: function (name, id) {
                 isSessionActive = true;
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
             },
             setSessionInactive: function (name, id) {
                 isSessionActive = false;
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
             },
             logOut: function () {
                 isSessionActive = false;
                 userName = "";
                 userId = "";
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
             },
             getCountCarrito: function () {
                 return productosCarrito;
@@ -56,7 +72,25 @@ moduleService.service('sessionService', ['$location', function ($location) {
             },
             getSesion: function () {
                 return sesion;
+            },
+
+            isAdmin: function () {
+                return admin;
+            },
+            setAdmin: function () {
+                admin = true;
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
+            },
+            setUser: function () {
+                admin = false;
+                angular.forEach(observerCallbacks, function (callback) {
+                    callback();
+                });
             }
-        };
+
+
+        }
 
     }]);

@@ -15,6 +15,11 @@ trolleyes.run(['$rootScope', 'sessionService', '$location', '$http',
                     oSessionService.setSessionActive;
                     oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                     oSessionService.setUserId(response.data.message.id);
+                    if (response.data.message.obj_tipoUsuario.desc == "Administrador") {
+                        oSessionService.setAdmin();
+                    } else {
+                        oSessionService.setUser();
+                    }
                 } else {
                     oSessionService.setSessionInactive;
                     if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/login') {
