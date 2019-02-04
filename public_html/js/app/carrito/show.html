@@ -19,10 +19,10 @@
                     <div class=" col-3 mt-2 ">
                         <h2 class="album__title text-left" style="font-size:3vw">{{fila.obj_producto.desc}}</h2>
                         <button type="button" class="btn btn-light align-items-left" style="font-size:2vw">
-                        Existencias <span class="badge badge-secondary">{{fila.obj_producto.existencias}}</span>
+                            Existencias <span class="badge badge-secondary">{{fila.obj_producto.existencias}}</span>
                         </button>
                     </div>
-                    <div class="btn-group-col col2" style="font-size:2vw">
+                    <div class="btn-group-col " style="font-size:2vw">
                         <button type="button" style="font-size:2vw" class="btn btn-light" ng-click="add(fila.obj_producto.id)">
                             Add cart <i class="fa fa-plus-square  ml-2" aria-hidden="true"></i>
                         </button>
@@ -31,13 +31,36 @@
                             <i class="fa fa-minus-square" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-light" ng-click="remove(fila.obj_producto.id)" style="font-size:2vw">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-light"  style="font-size:2vw">
+                            {{fila.obj_producto.precio}}€/unidad
+                        </button>
+                    </div>
+<!--                    <div class="col-2 alert-warning d-flex justify-content-end align-items-left">
+                        <div style="font-size:4vw">
+                            {{fila.obj_producto.precio*fila.cantidad}}€ 
+                        </div>
+                    </div>-->
+                    <div class="col-12 d-flex justify-content-end align-items-left ml-3 mb-2 ">
+                        <div class="alert-warning rounded" style="font-size:4vw">
+
+                            {{fila.obj_producto.precio*fila.cantidad}}€ 
+
+                        </div>
+                        <button type="button" class="btn btn-light ml-2" ng-click="remove(fila.obj_producto.id)" style="font-size:2vw">
                             <i class="fa fa-window-close" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
+
             </div>
+            <div class="jumbotron alert-warning" ng-show="!carritoVacio">
+
+                <h1 class="h1 d-flex justify-content-end "style="font-size:4vw">
+                    Total {{total}} €
+                </h1>
+            </div>
+
 
         </main>
     </div>   

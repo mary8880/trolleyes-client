@@ -1,23 +1,23 @@
 <header-component></header-component>
 <div class="container mt-5 mb-5align-self-center justify-content-center d-flex aling-items-center text-center">
-    <div class=" d-flex row mt-5">
+    <div class=" d-flex row mt-5 jumbotron bg-light">
         <div class="col-lg-8 justify-content-center d-flex aling-items-center align-self-center text-center">
-            <div class="jumbotron">
+            <div class="jumbotron bg-light">
                 <h1 class="display-4">Bienvenidos a Trolleyes</h1>
                 <p class="lead">El programa para aprender a desarrollar aplicaciones web</p>
                 <hr class="my-4">
                 <p>Ciclo formativo DAW, curso 2018-2019</p>
             </div>
-           
+
         </div>
         <div class="col-lg-3 justify-content-center ml-auto d-flex aling-items-center align-self-center text-center" ng-show="!logeado">
-            <div class="jumbotron">
 
-                <div class=" d-flex alert btn-warning align-self-center aling-items-center text-center" >
-                    <a  href="/trolleyes-client/public_html/login" class="text-muted text-center"><h1>Login</h1></a>
-                </div>
+            <div class="jumbotron bg-warning  ">
 
-            </div>
+                <a  href="/trolleyes-client/public_html/login" class=" btn btn-lg btn-warning  text-dark text-center text-dark"><h1>Login</h1></a>
+            </div>  
+
+
         </div>
     </div>
 </div>

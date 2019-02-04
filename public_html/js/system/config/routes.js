@@ -7,10 +7,12 @@ var autenticacionAdministrador = function ($q, $location, $http, sessionService)
     }).then(function (response) {
         if (response.data.status == 200) {
             if (response.data.message.obj_tipoUsuario.id == 1) { // 1 = ADMINISTRADOR
-//                sessionService.setUserName(response.data.message.login);
-//                sessionService.setId(response.data.message.id);
+                sessionService.setSessionActive;
+                sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+                sessionService.setUserId(response.data.message.id);
                 sessionService.setAdmin();
                 deferred.resolve(response.data.message);
+                sessionService.setSessionActive(sessionService.getUserName(), sessionService.getUserId());
 
             } else {
                 sessionService.setUser();
@@ -37,13 +39,13 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService) {
     }).then(function (response) {
         if (response.data.status == 200) {
 
-            if (response.data.message.obj_tipoUsuario.id == 1) { // 1 = ADMINISTRADOR
-
-                sessionService.setUserName(response.data.message.login);
-                sessionService.setId(response.data.message.id);
+            if (response.data.message.obj_tipoUsuario.id == 2) { // 1 = ADMINISTRADOR
+                sessionService.setSessionActive;
+                sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+                sessionService.setUserId(response.data.message.id);
+                sessionService.setUser();
                 deferred.resolve(response.data.message);
-            } else if (response.data.message.obj_tipoUsuario.id == 2) { // 2 = CLIENTE
-
+                sessionService.setSessionActive(sessionService.getUserName(), sessionService.getUserId());
 
             } else {
                 $location.path('/home');
@@ -58,15 +60,51 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService) {
     return deferred.promise;
 }
 
+var autenticacionCualquiera = function ($q, $location, $http, sessionService) {
+    var deferred = $q.defer();
+
+    $http({
+        method: 'GET',
+        url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=check'
+    }).then(function (response) {
+        if (response.data.status == 200) {
+            if (response.data.message.obj_tipoUsuario.id == 1 || response.data.message.obj_tipoUsuario.id == 2) { // 1 = ADMINISTRADOR
+                sessionService.setSessionActive;
+                sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+                sessionService.setUserId(response.data.message.id);
+                
+                deferred.resolve(response.data.message);
+                sessionService.setSessionActive(sessionService.getUserName(), sessionService.getUserId());
+                if (response.data.message.obj_tipoUsuario.id == 1 ){
+                 sessionService.setAdmin();   
+                }else{
+                 sessionService.setUser();   
+                }
+            } else {
+                sessionService.setUser();
+                $location.path('/home');
+            }
+        } else {
+            sessionService.setUser();
+            $location.path('/home');
+        }
+    }, function (response) {
+        sessionService.setUser();
+        $location.path('/home');
+    });
+
+    return deferred.promise;
+}
+
 trolleyes.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/home', {templateUrl: 'js/app/common/home.html', controller: 'homeController'});
         $routeProvider.when('/login', {templateUrl: 'js/app/common/login.html', controller: 'loginController'});
         //-----------------------------usuario--------------------------------------------
         $routeProvider.when('/usuario/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/usuario/plist.html', controller: 'usuarioPlistController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/usuario/view/:id?', {templateUrl: 'js/app/usuario/view.html', controller: 'usuarioViewController'});
+        $routeProvider.when('/usuario/view/:id?', {templateUrl: 'js/app/usuario/view.html', controller: 'usuarioViewController', resolve: {auth: autenticacionCualquiera}});
         $routeProvider.when('/usuario/new', {templateUrl: 'js/app/usuario/new.html', controller: 'usuarioNewController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/usuario/edit/:id?', {templateUrl: 'js/app/usuario/edit.html', controller: 'usuarioEditController'});
+        $routeProvider.when('/usuario/edit/:id?', {templateUrl: 'js/app/usuario/edit.html', controller: 'usuarioEditController', resolve: {auth: autenticacionCualquiera}});
         $routeProvider.when('/usuario/delete/:id?', {templateUrl: 'js/app/usuario/delete.html', controller: 'usuarioDeleteController', resolve: {auth: autenticacionAdministrador}});
 
         //-----------------------------tipousuario-----------------------------------------
@@ -78,7 +116,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------------------------factura----------------------------------------------
         $routeProvider.when('/factura/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/factura/plist.html', controller: 'facturaPlistController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/factura/plistXusuario/:id?/:rpp?/:page?/:order?', {templateUrl: 'js/app/factura/plistXusuario.html', controller: 'facturaPlistXusuarioController'});
-        $routeProvider.when('/factura/view/:id?', {templateUrl: 'js/app/factura/view.html', controller: 'facturaViewController'});
+        $routeProvider.when('/factura/view/:id?', {templateUrl: 'js/app/factura/view.html', controller: 'facturaViewController', resolve: {auth: autenticacionCualquiera}});
         $routeProvider.when('/factura/new/:id?', {templateUrl: 'js/app/factura/new.html', controller: 'facturaNewController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/factura/edit/:id?', {templateUrl: 'js/app/factura/edit.html', controller: 'facturaEditController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/factura/delete/:id?', {templateUrl: 'js/app/factura/delete.html', controller: 'facturaDeleteController', resolve: {auth: autenticacionAdministrador}});
@@ -94,7 +132,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/producto/new/:id?', {templateUrl: 'js/app/producto/new.html', controller: 'productoNewController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/producto/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/producto/delete/:id?', {templateUrl: 'js/app/producto/delete.html', controller: 'productoDeleteController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/producto/tienda/:id?', {templateUrl: 'js/app/producto/tienda.html', controller: 'productoTiendaController'});
+        $routeProvider.when('/producto/tienda/:id?', {templateUrl: 'js/app/producto/tienda.html', controller: 'productoTiendaController', resolve: {auth: autenticacionUsuario}});
         //-----------------------------linea---------------------------------------------
         $routeProvider.when('/factura/:id/linea/plist', {templateUrl: 'js/app/linea/plist.html', controller: 'lineaPlistController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/factura/:id/linea/new', {templateUrl: 'js/app/linea/new.html', controller: 'lineaNewController', resolve: {auth: autenticacionAdministrador}});
@@ -104,8 +142,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/factura/:id/linea/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/linea/plist.html', controller: 'lineaPlistController', resolve: {auth: autenticacionAdministrador}});
 
 
-        $routeProvider.when('/carrito/show', {templateUrl: 'js/app/carrito/show.html', controller: 'productoShowController'});
-        $routeProvider.when('/carrito/buy', {templateUrl: 'js/app/carrito/buy.html', controller: 'productoBuyController'});
+        $routeProvider.when('/carrito/show', {templateUrl: 'js/app/carrito/show.html', controller: 'productoShowController', resolve: {auth: autenticacionUsuario}});
+        $routeProvider.when('/carrito/buy', {templateUrl: 'js/app/carrito/buy.html', controller: 'productoBuyController', resolve: {auth: autenticacionUsuario}});
         //----------------------------------------------------------------------------------
         $routeProvider.otherwise({redirectTo: '/home'});
     }]);
