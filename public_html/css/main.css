@@ -3,6 +3,7 @@
 html {
   position: relative;
   min-height: 100%;
+   background-color: white;
 }
 body {
   /* Margin bottom by footer height */
@@ -25,6 +26,7 @@ body {
 
 body > .container {
   padding: 60px 0;
+
 }
 
 /*.footer > .container {

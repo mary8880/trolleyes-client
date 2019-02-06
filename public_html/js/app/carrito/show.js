@@ -22,7 +22,7 @@ moduleProducto.controller('productoShowController', ['$scope', '$http', '$locati
             url: 'http://localhost:8081/trolleyes/json?ob=carrito&op=show'
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDataProductos = response.data.message
+            $scope.ajaxDataProductos = response.data.message;
             var data = $scope.ajaxDataProductos;
             var sumaprod = 0;
             var sumat = 0;
@@ -83,8 +83,9 @@ moduleProducto.controller('productoShowController', ['$scope', '$http', '$locati
                 var data = $scope.ajaxDataProductos;
                 var sumaprod = 0;
                 var sumat = 0;
-                if (data === null) {
-                    $scope.carritoVacio = true;
+                var status= $scope.status ;
+                if (status===400) {
+                     $scope.carritoVacio = true;
                 } else {
                     for (var i = 0; i < response.data.message.length; i++) {
                         sumaprod = response.data.message[i].obj_producto.precio * response.data.message[i].cantidad;
@@ -116,7 +117,7 @@ moduleProducto.controller('productoShowController', ['$scope', '$http', '$locati
                 $scope.carritoVacio = false;
             });
 
-        }
+        };
 
         $scope.remove = function (id_producto) {
             $http({
@@ -129,7 +130,8 @@ moduleProducto.controller('productoShowController', ['$scope', '$http', '$locati
                 var data = $scope.ajaxDataProductos;
                 var sumaprod = 0;
                 var sumat = 0;
-                if (data === null) {
+                var status= $scope.status ;
+                if (status===400) {
                     $scope.carritoVacio = true;
                 } else {
                     for (var i = 0; i < response.data.message.length; i++) {

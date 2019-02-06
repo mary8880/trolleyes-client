@@ -1,33 +1,25 @@
 <header-component></header-component>
 <div class="container-fluid">
     <div class="row">
-        <main role="main" class="col-lg-12 px-4 mt-5 mb-3 ">
+        <main role="main" class="col-lg-12 px-4 mt-5 mb-3">
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-3 border-bottom">
                 <h1 class="h2  ml-3 mb-3" ><i class="fa fa-shopping-basket" aria-hidden="true"></i> Productos</h1>
             </div>
             <div class="row port-page">
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe"ng-repeat="fila in ajaxDataProductos">
+                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe"ng-repeat="fila in ajaxDataProductos ">
                     <img src="http://localhost:8081/imagenes/{{fila.foto}}" class="img-responsive center-block port-image" alt=""/>
                     <div class="row ml-3 mt-2">
                         <h2 class="album__title">{{fila.desc}}</h2>
-
+                        <button type="button" class="btn btn-light ml-3">
+                            Existencias <span class="badge badge-secondary">{{fila.existencias}}</span>
+                        </button>
                     </div>
-                    <div class="col ml-3 mr-2 mt-2 d-flex justify-content-end">
-                        <span>Existencias </span>
-                        <span class=" d-flex rounded-circle badge badge-light align-items-center ml-2"> {{fila.existencias}}</span>
-
+                    <div class="btn-group-col m">
+                        <button type="button" class="btn btn-light btn-lg" ng-click="add(fila.id)">
+                            Add cart <i class="fas fa-cart-plus"></i>
+                        </button>
                     </div>
-                    <div class="row d-flex mt-3">
-                        <div class="btn-group-col ml-3">
-                            <button type="button" class="btn btn-light rounded" ng-click="add(fila.id)">
-                                ADD CART <i class="fa fa-plus-square  ml-2" aria-hidden="true"  aria-pressed="true"></i>
-                            </button>
-                        </div>
-                        <div class="col m">
-
-                            <h3 class="album__price  d-flex justify-content-end">{{fila.precio}}€</h3>
-
-                        </div>
+                    <div>
                     </div>
                 </div>
             </div>

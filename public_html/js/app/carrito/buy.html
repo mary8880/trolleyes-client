@@ -5,61 +5,57 @@
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 border-bottom">
                 <h1 class="h2  ml-3 mb-3 " >Carrito</h1>
             </div>
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 border-bottom">
-                <div class="col-lg-12  mb-3" ng-show="!comprado">
-                    <h1>¿Desea comprar los productos del carrito?</h1>
-                    <div class="d-flex  align-items-left justify-content-end mb-3" style="margin-right: 6%">
-                        <button class="btn btn-warning btn-lg" ng-click="buy()">si</button>
-                        <a class="btn btn-secondary btn-lg ml-3" href="/trolleyes-client/public_html/producto/tienda">No (seguir comprando)</a>
+            <div class=" jumbotron d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 " ng-show="!comprado">
+                <div class="col-lg-12  mb-3 mt-3 ml-3"  >
+                    <h1 class="h1" style="font-size:4vw">¿Desea comprar los productos del carrito?</h1>
+                    <div class="d-flex  align-items-left justify-content-end mb-3 mt-3" style="margin-right: 6%">
+                        <button class="btn btn-warning btn-lg" ng-click="buy()"style="font-size:3vw"><i class="fas fa-money-bill-alt"></i> Si</button>
+                        <a class="btn btn-secondary btn-lg ml-3" href="/trolleyes-client/public_html/producto/tienda" style="font-size:3vw"><i class="fa fa-shopping-basket" aria-hidden="true"></i> No</a>
                     </div>
                 </div>
-
-                <div class="col-lg-12 " ng-show="comprado">
-                    <h1>Ha comprado los siguientes productos</h1>
+            </div>
+            <div class=" jumbotron d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 " ng-show="comprado">
+                <div class="col-lg-12 " >
+                    <h1 class="h1" style="font-size:4vw">Ha comprado los siguientes productos</h1>
                     <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <a class="btn btn-warning btn-lg ml-3" ng-click="empty()" href="/trolleyes-client/public_html/producto/tienda">Volver a la tienda</a>
+                        <a class="btn btn-warning btn-lg ml-3" ng-click="empty()" href="/trolleyes-client/public_html/producto/tienda" style="font-size:3vw"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Volver a la tienda</a>
+                    </div>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 ">
+            <div class="row port-page">
+                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-12"ng-repeat="fila in ajaxDataProductos" ng-show="!carritoVacio" >
+                    <img  src="http://localhost:8081/imagenes/{{fila.obj_producto.foto}}" class="img-responsive center-block port-image col-3 mt-2 mb-2 " alt="" />
+                    <div class=" col-3 mt-2 ">
+                        <h2 class="album__title text-left" style="font-size:3vw">{{fila.obj_producto.desc}}</h2>
+                    </div>
+                    <div class="btn-group-col col2 ">
+                        <span class="badge badge-light" style=" font-size:2vw"> Cantidad: {{fila.cantidad}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="badge badge-light" style=" font-size:2vw"> 
+                            {{fila.obj_producto.precio}}€/unidad
+                        </span>
                     </div>
 
-                </div>
-                <div class="row port-page">
-                    <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-12"ng-repeat="fila in ajaxDataProductos" ng-show="!carritoVacio" >
-                        <img  src="http://localhost:8081/imagenes/{{fila.obj_producto.foto}}" class="img-responsive center-block port-image col-3 mt-2 mb-2 " alt="" />
-                        <div class=" col-3 mt-2 ">
-                            <h2 class="album__title text-left" style="font-size:3vw">{{fila.obj_producto.desc}}</h2>
-                        </div>
-                        <div class="btn-group-col col2 ">
-                            <span class="badge badge-light"> Cantidad: {{fila.cantidad}}</span>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-light"  style="font-size:2vw">
-                                {{fila.obj_producto.precio}}€/unidad
-                            </button>
-                        </div>
+                    <div class="col-12 d-flex justify-content-end align-items-left ml-3 mb-2 ">
+                        <div class="alert-warning rounded" style="font-size:4vw">
 
-                        <div class="col-12 d-flex justify-content-end align-items-left ml-3 mb-2 ">
-                            <div class="alert-warning rounded" style="font-size:4vw">
+                            <h2 class="h3 ml-2 mr-2 mb-2 mt-2" style="font-size:3vw">{{fila.obj_producto.precio * fila.cantidad}} €                
+                            </h2>
 
-                                {{fila.obj_producto.precio*fila.cantidad}}€ 
-
-                            </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="jumbotron alert-warning">
-
-                    <h1 class="h1 d-flex justify-content-end "style="font-size:4vw">
-                        Total {{total}} €
-                    </h1>
                 </div>
 
             </div>
-
-
-
     </div>
+    <div class="jumbotron alert-warning" ng-show="!carritoVacio">
 
+        <h1 class="h1 d-flex justify-content-end " style="font-size:4vw">
+            Total {{total}} €
+        </h1>
+    </div>
 </main>
 </div>   
-</div>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>
