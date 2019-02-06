@@ -9,7 +9,7 @@
                         <button type="button" class="btn btn-light btn-lg mr-5" ng-show="!carritoVacio" style="font-size:5vw" ng-click="empty()">
                             <i class="fas fa-trash-alt"></i>
                         </button>
-                        <a class="btn btn-warning btn-lg mr-5 " href="/trolleyes-client/public_html/carrito/buy" ng-show="!carritoVacio" style="font-size:3vw" >
+                        <a class="btn btn-warning btn-lg mr-5 " href="/trolleyes-client/public_html/carrito/buy" ng-show="!carritoVacio" style="font-size:5vw" >
                             <i class="fa fa-cart-arrow-down" aria-hidden="true" ></i> Buy
                         </a>
                     </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="row port-page mt-5">
-                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-lg-8 mt-5 align-self-center text-center" ng-repeat="fila in ajaxDataProductos" ng-show="!carritoVacio" >
+                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-lg-8 mt-5 ml-5 align-self-center text-center" ng-repeat="fila in ajaxDataProductos" ng-show="!carritoVacio" >
                     <img  src="http://localhost:8081/imagenes/{{fila.obj_producto.foto}}" class="img-responsive center-block port-image col-3 mt-2 mb-2 " alt="" />
                     <div class=" col-3 mt-2 ">
                         <h2 class="album__title text-left" style="font-size:3vw">{{fila.obj_producto.desc}}</h2>
