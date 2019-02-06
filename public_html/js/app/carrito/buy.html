@@ -3,7 +3,7 @@
     <div class="row">
         <main role="main" class="col-lg-12 px-4 mt-5 mb-3">
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 border-bottom">
-                <h1 class="h2  ml-3 mb-3 " >Carrito</h1>
+                <h1 class="h2  ml-3 mb-3 " ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito</h1>
             </div>
             
             <div class=" jumbotron d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 " ng-show="!comprado">
@@ -20,7 +20,9 @@
                     <h1 class="h1" style="font-size:4vw">Ha comprado los siguientes productos</h1>
                     <div class="d-flex align-self-center align-items-center justify-content-end mt-3 mb-3" style="margin-right: 6%">
                         <a class="btn btn-warning btn-lg ml-3" ng-click="empty()" href="/trolleyes-client/public_html/producto/tienda" style="font-size:3vw"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Volver a la tienda</a>
+                         <a class="btn btn-warning btn-lg ml-3" ng-click="pdf()" href="/trolleyes-client/public_html/producto/tienda" style="font-size:3vw"><i class="fas fa-file-pdf"></i></a>
                     </div>
+
                 </div>
             </div>
             <div class=" d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 ">
