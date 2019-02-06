@@ -2,38 +2,40 @@
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-lg-12 px-4 mt-5 mb-5">
-            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 border-bottom">
-                <h1 class="h2  ml-3 mb-3" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito</h1>
-                <div>
-                    <button type="button" class="btn btn-light btn-lg mr-5" ng-show="!carritoVacio" style="font-size:5vw" ng-click="empty()">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                    <a class="btn btn-warning btn-lg mr-5 " href="/trolleyes-client/public_html/carrito/buy" ng-show="!carritoVacio" style="font-size:3vw" >
-                        <i class="fa fa-cart-arrow-down" aria-hidden="true" ></i> Buy
-                    </a>
-                </div>
-            </div>
-            <div class="container col-lg-8">
-            <div class=" row jumbotron d-flex justify-content-between align-self-center flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 "ng-show="carritoVacio">
-                <div class="col">
-                    <h1>El carrito está vacio...</h1>
-                </div>
-                <div class="col">
-                    <div class="d-flex align-self-center align-items-center" style="margin-right: 6%">
-                        <a class="btn btn-warning btn-lg ml-3"  href="/trolleyes-client/public_html/producto/tienda"><i class="fa fa-shopping-basket" aria-hidden="true" style="font-size:5vw"></i> Volver a la tienda</a>
+            <div class="container-fluid position-fixed sticky-top bg-white mb-5 border-bottom">
+                <div class=" d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mt-5">
+                    <h1 class="h2  ml-3 mb-3" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito</h1>
+                    <div>
+                        <button type="button" class="btn btn-light btn-lg mr-5" ng-show="!carritoVacio" style="font-size:5vw" ng-click="empty()">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <a class="btn btn-warning btn-lg mr-5 " href="/trolleyes-client/public_html/carrito/buy" ng-show="!carritoVacio" style="font-size:3vw" >
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true" ></i> Buy
+                        </a>
                     </div>
-
                 </div>
             </div>
+            <div class="container col-lg-8 mt-5">
+                <div class=" row jumbotron d-flex justify-content-between align-self-center flex-wrap align-items-center pt-3 pb-2 mt-5 mb-5 "ng-show="carritoVacio"  style="margin-top: 50px">
+                    <div class="col mb-5" style="margin-top: 10%;font-size:4vw">
+                        <h1 style="font-size:3vw">El carrito está vacio...</h1>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex align-self-center align-items-center">
+                            <a class="btn btn-warning btn-lg ml-3"  href="/trolleyes-client/public_html/producto/tienda"><i class="fa fa-shopping-basket" aria-hidden="true" style="font-size:5vw"></i> Volver a la tienda</a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="row port-page">
-                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-12" ng-repeat="fila in ajaxDataProductos " ng-show="!carritoVacio" >
+            <div class="row port-page mt-5">
+                <div class="d-flex justify-content-between flex-wrap align-items-center border-bottom col-lg-8 mt-5 align-self-center text-center" ng-repeat="fila in ajaxDataProductos" ng-show="!carritoVacio" >
                     <img  src="http://localhost:8081/imagenes/{{fila.obj_producto.foto}}" class="img-responsive center-block port-image col-3 mt-2 mb-2 " alt="" />
                     <div class=" col-3 mt-2 ">
                         <h2 class="album__title text-left" style="font-size:3vw">{{fila.obj_producto.desc}}</h2>
-<!--                        <button type="button" class="btn btn-light align-items-left" style="font-size:2vw">
-                            Existencias <span class="badge badge-secondary">{{fila.obj_producto.existencias}}</span>
-                        </button>-->
+                        <!--                        <button type="button" class="btn btn-light align-items-left" style="font-size:2vw">
+                                                    Existencias <span class="badge badge-secondary">{{fila.obj_producto.existencias}}</span>
+                                                </button>-->
                     </div>
                     <div class="btn-group-col " style="font-size:2vw">
                         <button type="button" style="font-size:2vw" class="btn btn-light" ng-click="add(fila.obj_producto.id)">
