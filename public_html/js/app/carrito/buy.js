@@ -4,6 +4,7 @@ moduleProducto.controller('productoBuyController', ['$scope', '$http', '$locatio
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
         $scope.ruta = $location.path();
         $scope.comprado = false;
+        $scope.id = oSessionService.getUserId();
         
         
          $scope.total = 0;
@@ -86,4 +87,8 @@ moduleProducto.controller('productoBuyController', ['$scope', '$http', '$locatio
         $scope.isActive = toolService.isActive;
 
     }
+    //-------------------------------------------
+    //
+    //------------------------------------------
+    
 ]);

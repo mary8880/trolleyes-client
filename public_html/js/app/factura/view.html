@@ -43,6 +43,7 @@
             <div class="btn-group mr-2 mb-5" role="group" aria-label="Basic example">
                 <a href="/trolleyes-client/public_html/{{ob}}/edit/{{id}}" class="btn btn-secondary" role="button">Editar</a>
                 <a href="/trolleyes-client/public_html/{{ob}}/delete/{{id}}" class="btn btn-secondary" role="button">Eliminar</a>
+                 <a class="btn btn-warning ml-3" ng-click="descargarPDF(id)"><i class="fas fa-file-pdf"></i></a>
             </div>
             <h1 class="h4 h4 mb-3" >Lineas</h1>
             <button class="btn btn-warning " ng-click="mostrarlineas()" ng-show="!mostrarlinea"><i class="fa fa-plus-square  ml-2" aria-hidden="true"></i> Mostrar</button>

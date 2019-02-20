@@ -115,18 +115,20 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr  class="align-self-center align-items-center"ng-repeat="fila in ajaxDataUsuarios">
-                            <th class="text-center">{{fila.id}}</th>
-                            <td class="text-center">{{fila.fecha}}</td>
-                            <td class="text-center">{{fila.iva}}</td>
-                            <td class="text-center">{{fila.obj_usuario.id}}</td>
-                            <td class="align-self-center text-center"><a href="/trolleyes-client/public_html/factura/{{fila.id}}/linea/plist" class="btn btn-light" role="button">{{fila.numLineas}}</a></td>
+                        <tr  class="align-self-center align-items-center "ng-repeat="fila in ajaxDataFactura">
+                            <th class="text-center mt-2 mb-2">{{fila.id}}</th>
+                            <td class="text-center mt-2 mb-2">{{fila.fecha}}</td>
+                            <td class="text-center mt-2 mb-2">{{fila.iva}}</td>
+                            <td class="text-center mt-2 mb-2">{{fila.obj_usuario.id}}</td>
+                            <td class="align-self-center text-center mt-2 mb-2"><a href="/trolleyes-client/public_html/factura/{{fila.id}}/linea/plist" class="btn btn-light" role="button">{{fila.numLineas}}</a></td>
                             <td>
-                                <div class="btn-group mr-2" role="group" aria-label="Basic example">
+                                <div class="btn-group mr-2 mt-2 mb-2" role="group" aria-label="Basic example">
                                     <a href="/trolleyes-client/public_html/factura/view/{{fila.id}}" class="btn btn-secondary" role="button">Ver</a>
                                     <a href="/trolleyes-client/public_html/factura/edit/{{fila.id}}" class="btn btn-secondary" role="button">Editar</a>
                                     <a href="/trolleyes-client/public_html/factura/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
+                                    
                                 </div>
+                                <a class="btn btn-warning ml-3 mt-2 mb-2" ng-click="descargarPDF(fila.id)"><i class="fas fa-file-pdf"></i></a>
                             </td>
 
                         </tr>

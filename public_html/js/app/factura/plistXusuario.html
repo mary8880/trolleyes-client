@@ -115,7 +115,7 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-repeat="fila in ajaxDataUsuarios">
+                        <tr ng-repeat="fila in ajaxDataFactura">
                             <th class="text-center">{{fila.id}}</th>
                             <td class="text-center">{{fila.fecha}}</td>
                             <td class="text-center">{{fila.iva}}</td>
@@ -127,8 +127,9 @@
                                     <a href="/trolleyes-client/public_html/factura/edit/{{fila.id}}" class="btn btn-secondary" role="button">Editar</a>
                                     <a href="/trolleyes-client/public_html/factura/delete/{{fila.id}}" class="btn btn-secondary" role="button">Eliminar</a>
                                 </div>
+                                 <a class="btn btn-warning ml-3" ng-click="descargarPDF(fila.id)"><i class="fas fa-file-pdf"></i></a>
                             </td>
-
+                           
                         </tr>
                     </table>
                 </div>
